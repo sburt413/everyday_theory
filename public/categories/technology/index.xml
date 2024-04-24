@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Technology on Everyday Theory</title>
+    <link>http://localhost:1313/categories/technology/</link>
+    <description>Recent content in Technology on Everyday Theory</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 22 Apr 2024 23:12:20 -0400</lastBuildDate><atom:link href="http://localhost:1313/categories/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Mighty Whitespace</title>
+      <link>http://localhost:1313/post/000-mighty-space/</link>
+      <pubDate>Mon, 22 Apr 2024 23:12:20 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/000-mighty-space/</guid>
+      <description>
+        
+          
+            Look up the criticisms of Uncle Bob&amp;rsquo;s Clean Code and writing functions and you&amp;rsquo;ll be sure to find &amp;ldquo;no more than 4 lines&amp;rdquo; or something to that effect referring to the length of a function. I want to derive another way to reason about the length of a function. Let&amp;rsquo;s begin.
+Thoughts I want the number and complexity of thoughts to be the primary measure people think about a function. Let&amp;rsquo;s work through it with some code.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>
