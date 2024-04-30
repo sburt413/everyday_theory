@@ -2,36 +2,38 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  data-figures=""
+  data-figures="true"
+  
+    class="page"
   
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Coding | Everyday Theory</title>
+<title>Driver and Service | Everyday Theory</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="The code that uses a service has differing concerns than the code it calls." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Coding" />
+<meta name="twitter:title" content="Driver and Service" />
 <meta name="twitter:image" content="http://localhost:1313/"/>
-<meta property="og:url" content="http://localhost:1313/categories/coding/" />
-<meta property="og:title" content="Coding" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="http://localhost:1313/post/001-driver-and-service/" />
+<meta property="og:title" content="Driver and Service" />
+<meta property="og:description" content="The code that uses a service has differing concerns than the code it calls." />
 <meta property="og:image" content="http://localhost:1313/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/categories/coding/">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/coding/index.xml" title="Everyday Theory" />
+<link rel="canonical" href="http://localhost:1313/post/001-driver-and-service/">
 
 
 
@@ -47,8 +49,8 @@
 
   </head>
   <body
-    data-code="100"
-    data-lines="false"
+    data-code="10"
+    data-lines="true"
     id="documentTop"
     data-lang="en"
   >
@@ -93,19 +95,10 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/post/001-driver-and-service-copy/" title="Driver and Service">Driver and Service</a>
-      </h3>
-      
+  <article class="post_content">
+    <h1 class="post_title">Driver and Service</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -114,21 +107,21 @@
 </span>
     <span class="post_date">
       Apr 27, 2024</span>
-    <span class="post_time"> · 9 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/antipatterns/' title="Antipatterns" class="post_tag button button_translucent">Antipatterns
+    <span class="post_time"> · 6 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/antipatterns/' title="Antipatterns" class="post_tag button button_translucent">Antipatterns
         </a><a href='http://localhost:1313/tags/garbage-in-garbage-out/' title="Garbage In; Garbage Out" class="post_tag button button_translucent">Garbage In; Garbage Out
         </a>
     </span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Driver%20and%20Service&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f001-driver-and-service-copy%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=Driver%20and%20Service&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f001-driver-and-service%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f001-driver-and-service-copy%2f&t=Driver%20and%20Service" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f001-driver-and-service%2f&t=Driver%20and%20Service" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -142,7 +135,7 @@
 </svg>
 
     </a>
-    <a href="http://localhost:1313/post/001-driver-and-service-copy/" title="Copy Link" class="link link_yank">
+    <a href="http://localhost:1313/post/001-driver-and-service/" title="Copy Link" class="link link_yank">
       <svg class="icon">
   <title>copy</title>
   <use xlink:href="#copy"></use>
@@ -153,93 +146,105 @@
   </span>
   </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p>Code has or supports one of two roles:
-It adds value to your business It’s the code that drives the prior bullet point The first bullet point is usually called service code. It’s the service your company is being paid to do. The second bullet point can be one of many things, it could be …</p>
-          
-          <br>
-          <a href="http://localhost:1313/post/001-driver-and-service-copy/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class="post_body"><p>Find the right people and you can have an hours long conversation over functional programming and object oriented programming.  Ultimately, I don’t think either side would fully get to the point.  The primary point is to separate out what your code does from how your code does it.  Once you have a deep understanding of that, everything starts to look like imperative programming.  Let’s dig deeper into this.</p>
+<h1 id="functional-core-imperative-shell">Functional Core; Imperative Shell</h1>
+<p>”Functional Core; Imperative Shell”.  It’s an interesting and useful mantra.  You could also equally say “Object Oriented Core; Imperative Shell”.  Consider the case of a web application.  What your web application does is respond to imperative commands in forms of the HTTP verbs.  How it does it is a Spring/http4s/Zio/etc application.  If I as a consumer just have documentation of your endpoints, it doesn’t matter to me how you do it.  I have code (say a UI) that drives your code (the server).  Inside the server code, you could have controller code that drives service code.  Onions all the way.</p>
+<h1 id="architectural-separation">Architectural Separation</h1>
+<p>Is this any different than exposing public methods?  Not very much at this point.  That said, there are still important principles you can apply.  In the (Clean Architecture diagram)[https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html] and the book of the same name, we see layers of separation.  While we could go in depth as to the meaning of each color means, there’s a very simple breakdown:</p>
+<p>The UI/Web/etc (Blue) and Controllers/Presenters/Gateways (Green) drive the Use Cases (Red) and Entities (Yellow).  Another way of putting it is that the innermost Red and Yellow layers are your services that add value to your product.</p>
+<p>This distinction exists because you want your product to provide that value regardless of the medium it does it in.  Stated as a hyperbole, you don’t want a full copy of your whole stack again when you produce a new mobile app.  Beyond that, how you do things can be subject to change.  Minimizing the cost of that change is a core concept of software architecture.</p>
+<h1 id="on-the-function-level">On The Function Level</h1>
+<p>Why am I using the verb “drive” rather than distinctly just say “controller”, because this same dynamic plays out at multiple levels of code.  While this dynamic of having an imperative shell around some core service does play out at a controller level, you could also have it play out between high level and collaborator services and lower level and persistence services.</p>
+<p>This is all pretty general to split your application&rsquo;s boundaries from the rest of your code.  I think the deeper hidden meaning can also be done at the code level.  A distinct sign of a bad, complected codebase is when there is no meaningful distinction between the service code and the controller code driving it.  You find functions that have service and controller level concerns.</p>
+<h1 id="emergent-antipatterns">Emergent Antipatterns</h1>
+<p>There are two very common things you will find that get thrown in the implementation of a service function:</p>
+<ul>
+<li>Validation</li>
+<li>Data Loading</li>
+</ul>
+<h2 id="validation">Validation</h2>
+<p>Consider an endpoint in the form of /widgets/{id}.  If you pass an id to a non-existent widget, you want this controller to pass a 404 Not Found back.  Let&rsquo;s say we have:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
+</span></span><span style="display:flex;"><span>    Widget <span style="color:#a6e22e">getWidget</span>(String widgetId);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Let&rsquo;s say we create an implementation of <code>getWidget</code> that throws an <code>HttpNotFoundException</code> if no <code>Widget</code> is found for the given id.  This thought experiment should end very abruptly with the case of reusing this <code>WidgetService</code> for somewhere other than a web service call (e.g. a JMSListener, etc).  It is a problem because we put the concerns of the caller code (http return codes) inside the service call.  If we did that, and honest name for the interface would be something like <code>HttpWidgetService</code>.</p>
+<p>Let&rsquo;s loop back to the main point, validation is a <em>driver</em> concern because the service does not (and <em>should not</em>) know all the possible use case or failure conditions of the calling code.</p>
+<h2 id="data-loading">Data Loading</h2>
+<p>Here&rsquo;s a tricky case.  What&rsquo;s wrong with this code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, String widgetId)
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Validation is a driver level concern!  Ok, ok, we know <em>that</em> is an issue.  What else?</p>
+<p>Did you make the presumption that <code>Invoice</code>s and <code>Widget</code>s reside in the same database?  What if they are in different microservices?  This can lead to interesting problems because you are presuming another thing about the caller.  You&rsquo;re presuming that the loading a <em>single</em> invoice and widget is the only IO the caller needs to perform.  Ok, let&rsquo;s upgrade this service:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>We&rsquo;ve solved it, right?  Nope.  It&rsquo;s not that easy.  Let&rsquo;s consider the case that we actually have a batch controller that actually takes a batch of several invoices with their respective widgets.  That will still produce <em>n</em> queries per batch.  The solution is to do this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoice</span>(String invoiceId) {
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> foundInvoices <span style="color:#f92672">=</span> getInvoices(Collections.<span style="color:#a6e22e">singletonList</span>(invoiceId));
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (foundInvoices.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">empty</span>();
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">of</span>(foundInvoices.<span style="color:#a6e22e">get</span>(0));
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoices</span>(String invoiceId);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(Invoice invoice, Collection<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>This way, a controller can determine how to optimally perform IO.  That means the code driving this service would look like.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidget</span>(String widgetId) { ... }
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidgets</span>(List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceWebController</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> WidgetService widgetService;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> InvoiceService invoiceService;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> HttpResponse<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">updateOrder</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> newWidgetIds) {
+</span></span><span style="display:flex;"><span>      Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> possibleInvoice <span style="color:#f92672">=</span> invoiceService.<span style="color:#a6e22e">getInvoice</span>(invoiceId);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (possibleInvoice.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">notFound</span>(INVOICE_NOT_FOUND);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      Invoice invoice <span style="color:#f92672">=</span> possibleInvoice.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets <span style="color:#f92672">=</span> widgetService.<span style="color:#a6e22e">getWidgets</span>(newWidgetIds);
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> missingWidgetIds <span style="color:#f92672">=</span> findMissingWidgetIds(newWidgetIds, widgets);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>missingWidgetIds.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">notFound</span>(WIDGETS_NOT_FOUND <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> missingWidgetIds);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      invoiceService.<span style="color:#a6e22e">addWidget</span>(invoice, widgets);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">ok</span>(invoice);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>That reads very&hellip; imperatively.  I gentally refer the reader back to the first paragraph.</p>
+<h1 id="garbage-in-garbage-out">Garbage In; Garbage Out</h1>
+<p>You could ask for <code>InvoiceService</code>: what if I as the service get an invalid <code>Widget</code>.  The answer is simply that you have a programming error in your controller code.  The statement &ldquo;Garbage In; Garbage Out&rdquo; exists for a reason.  If you want to guard against someone creating a rogue <code>Widget</code>, qualify the constructors with <code>private</code> or <code>protected</code>.  Beyond that, you can use static analysis to find all the callsites that call the constructor (IntelliJ&rsquo;s Call Hierarchy is your friend in these cases).  If you truly believe there is some unavoidable risk to delgating this responsibility to the driving code, I humbly suggest that the reader update their test suites and revisit the issue.</p>
+<p>Forcing callers to do validation also provides the benefit of failing early which prevents very difficult to debug classes of errors.  Burying IO as a side effect makes it difficult to reason about the performance of your code.  Surfacing the IO make it makes it much easier to reason about and optimize your code.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Don&rsquo;t bury concerns of the code driving in the service code.  Those prosumptions will eventually yield hidden costs.  This can be difficult because usually the same person writing the code being driven is writing the code doing the driving.</p>
+<p>If you are writing a service, don&rsquo;t presume:</p>
+<ul>
+<li>How an error case is handled (if it is even an error)</li>
+<li>How to optimize IO</li>
+</ul>
 
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/post/000-mighty-space/" title="The Mighty Whitespace">The Mighty Whitespace</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Apr 24, 2024</span>
-    <span class="post_time"> · 7 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/uncle-bob/' title="Uncle Bob" class="post_tag button button_translucent">Uncle Bob
-        </a><a href='http://localhost:1313/tags/thoughts/' title="Thoughts" class="post_tag button button_translucent">Thoughts
-        </a><a href='http://localhost:1313/tags/whitespace/' title="Whitespace" class="post_tag button button_translucent">Whitespace
-        </a>
-    </span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=The%20Mighty%20Whitespace&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f000-mighty-space%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
+    </div><div class="post_comments">
+  
+  
+  
+</div>
 
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f000-mighty-space%2f&t=The%20Mighty%20Whitespace" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
 
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
 
-    </a>
-    <a href="http://localhost:1313/post/000-mighty-space/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
 
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p>I’ve seen multiple criticisms of Uncle Bob’s Clean Code involving the (short) length of functions. I’ve also seen multiple great responses to those rules of thumb. I want to derive another way to reason about the length of a function. Let’s begin.
-Thoughts I want the number and …</p>
-          
-          <br>
-          <a href="http://localhost:1313/post/000-mighty-space/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li>
-      </li>
-    </ul>
-  </div>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
@@ -251,10 +256,10 @@ Thoughts I want the number and …</p>
     <h2 class="mt-4">Featured Posts</h2>
     <ul>
       <li>
-        <a href="http://localhost:1313/post/002-what-from-how/" class="nav-link" title="What From How">What From How</a>
+        <a href="http://localhost:1313/post/001-driver-and-service-copy/" class="nav-link" title="Driver and Service">Driver and Service</a>
       </li>
       <li>
-        <a href="http://localhost:1313/post/001-driver-and-service-copy/" class="nav-link" title="Driver and Service">Driver and Service</a>
+        <a href="http://localhost:1313/post/001-driver-and-service/" class="nav-link" title="Driver and Service">Driver and Service</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/000-mighty-space/" class="nav-link" title="The Mighty Whitespace">The Mighty Whitespace</a>
@@ -268,12 +273,7 @@ Thoughts I want the number and …</p>
       <nav class="tags_nav">
         <a href='http://localhost:1313/categories/coding/' class="post_tag button button_translucent" title="coding">
           CODING
-          <span class="button_tally">2</span>
-        </a>
-        
-        <a href='http://localhost:1313/categories/architecture/' class="post_tag button button_translucent" title="architecture">
-          ARCHITECTURE
-          <span class="button_tally">1</span>
+          <span class="button_tally">3</span>
         </a>
         
         
@@ -284,17 +284,12 @@ Thoughts I want the number and …</p>
       <nav class="tags_nav">
         <a href='http://localhost:1313/tags/antipatterns/' class="post_tag button button_translucent" title="antipatterns">
           ANTIPATTERNS
-          <span class="button_tally">1</span>
-        </a>
-        
-        <a href='http://localhost:1313/tags/design/' class="post_tag button button_translucent" title="design">
-          DESIGN
-          <span class="button_tally">1</span>
+          <span class="button_tally">2</span>
         </a>
         
         <a href='http://localhost:1313/tags/garbage-in-garbage-out/' class="post_tag button button_translucent" title="garbage in; garbage out">
           GARBAGE IN; GARBAGE OUT
-          <span class="button_tally">1</span>
+          <span class="button_tally">2</span>
         </a>
         
         <a href='http://localhost:1313/tags/thoughts/' class="post_tag button button_translucent" title="thoughts">
@@ -318,9 +313,8 @@ Thoughts I want the number and …</p>
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

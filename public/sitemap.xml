@@ -3,31 +3,61 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-04-24T12:00:00-04:00</lastmod>
+    <lastmod>2024-04-29T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
-    <lastmod>2024-04-24T12:00:00-04:00</lastmod>
+    <loc>http://localhost:1313/categories/architecture/</loc>
+    <lastmod>2024-04-29T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-04-24T12:00:00-04:00</lastmod>
+    <lastmod>2024-04-29T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/categories/coding/</loc>
-    <lastmod>2024-04-24T12:00:00-04:00</lastmod>
+    <loc>http://localhost:1313/tags/design/</loc>
+    <lastmod>2024-04-29T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2024-04-24T12:00:00-04:00</lastmod>
+    <lastmod>2024-04-29T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
+    <lastmod>2024-04-29T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/002-what-from-how/</loc>
+    <lastmod>2024-04-29T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/antipatterns/</loc>
+    <lastmod>2024-04-27T00:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/coding/</loc>
+    <lastmod>2024-04-27T00:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/001-driver-and-service-copy/</loc>
+    <lastmod>2024-04-27T00:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/garbage-in-garbage-out/</loc>
+    <lastmod>2024-04-27T00:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/about/</loc>
     <lastmod>2024-04-24T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

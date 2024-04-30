@@ -6,7 +6,24 @@
     <description>Recent content on Everyday Theory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 24 Apr 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Apr 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Driver and Service</title>
+      <link>http://localhost:1313/post/001-driver-and-service-copy/</link>
+      <pubDate>Tue, 30 Apr 2024 00:00:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/001-driver-and-service-copy/</guid>
+      <description>
+        
+          
+            Code has one of two roles:
+Add value to your business Drive the prior bullet point The first bullet point is usually called service code. It&amp;rsquo;s the service your company is being paid to do. The second bullet point can be one of many things, it could be controllers/webapps/etc. It can be cron jobs that perform various functions. It&amp;rsquo;s the code for how people interact with the system. Their functionality is usually described in the &amp;lsquo;Use Case&amp;rsquo; field of the Jira ticket.
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>The Mighty Whitespace</title>
       <link>http://localhost:1313/post/000-mighty-space/</link>
