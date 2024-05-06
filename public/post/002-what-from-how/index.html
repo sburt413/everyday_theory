@@ -9,7 +9,7 @@
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>What From How | Everyday Theory</title>
+<title>Separate What From How | Everyday Theory</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -22,10 +22,10 @@
 <meta name="description" content="What you are doing should be separate from how you are doing it." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="What From How" />
+<meta name="twitter:title" content="Separate What From How" />
 <meta name="twitter:image" content="http://localhost:1313/"/>
 <meta property="og:url" content="http://localhost:1313/post/002-what-from-how/" />
-<meta property="og:title" content="What From How" />
+<meta property="og:title" content="Separate What From How" />
 <meta property="og:description" content="What you are doing should be separate from how you are doing it." />
 <meta property="og:image" content="http://localhost:1313/" />
 
@@ -98,7 +98,7 @@
   
 <div class="grid-inverse wrap content">
   <article class="post_content">
-    <h1 class="post_title">What From How</h1>
+    <h1 class="post_title">Separate What From How</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -106,21 +106,23 @@
 </svg>
 </span>
     <span class="post_date">
-      Apr 29, 2024</span>
-    <span class="post_time"> · 5 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/design/' title="Design" class="post_tag button button_translucent">Design
+      Apr 30, 2024</span>
+    <span class="post_time"> · 7 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/antipatterns/' title="Antipatterns" class="post_tag button button_translucent">Antipatterns
+        </a><a href='http://localhost:1313/tags/design/' title="Design" class="post_tag button button_translucent">Design
+        </a><a href='http://localhost:1313/tags/naming/' title="Naming" class="post_tag button button_translucent">Naming
         </a>
     </span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=What%20From%20How&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f002-what-from-how%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=Separate%20What%20From%20How&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f002-what-from-how%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f002-what-from-how%2f&t=What%20From%20How" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f002-what-from-how%2f&t=Separate%20What%20From%20How" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -145,84 +147,69 @@
   </span>
   </div>
 
-    <div class="post_body"><p>Find the right people and you can have an hours long conversation over functional programming and object oriented programming.  Ultimately, I don’t think either side would fully get to the point.  The primary point is to separate out what your code does from how your code does it.  Once you have a deep understanding of that, everything starts to look like imperative programming.  Let’s dig deeper into this.</p>
-<h1 id="functional-core-imperative-shell">Functional Core; Imperative Shell</h1>
-<p>”Functional Core; Imperative Shell”.  It’s an interesting and useful mantra.  You could also equally say “Object Oriented Core; Imperative Shell”.  Consider the case of a web application.  What your web application does is respond to imperative commands in forms of the HTTP verbs.  How it does it is a Spring/http4s/Zio/etc application.  If I as a consumer just have documentation of your endpoints, it doesn’t matter to me how you do it.  I have code (say a UI) that drives your code (the server).  Inside the server code, you could have controller code that drives service code.  Onions all the way.</p>
-<h1 id="architectural-separation">Architectural Separation</h1>
-<p>Is this any different than exposing public methods?  Not very much at this point.  That said, there are still important principles you can apply.  In the (Clean Architecture diagram)[https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html] and the book of the same name, we see layers of separation.  While we could go in depth as to the meaning of each color means, there’s a very simple breakdown:</p>
-<p>The UI/Web/etc (Blue) and Controllers/Presenters/Gateways (Green) drive the Use Cases (Red) and Entities (Yellow).  Another way of putting it is that the innermost Red and Yellow layers are your services that add value to your product.</p>
-<p>This distinction exists because you want your product to provide that value regardless of the medium it does it in.  Stated as a hyperbole, you don’t want a full copy of your whole stack again when you produce a new mobile app.  Beyond that, how you do things can be subject to change.  Minimizing the cost of that change is a core concept of software architecture.</p>
-<h1 id="on-the-function-level">On The Function Level</h1>
-<p>Why am I using the verb “drive” rather than distinctly just say “controller”, because this same dynamic plays out at multiple levels of code.  While this dynamic of having an imperative shell around some core service does play out at a controller level, you could also have it play out between high level and collaborator services and lower level and persistence services.</p>
-<p>This is all pretty general to split your application&rsquo;s boundaries from the rest of your code.  I think the deeper hidden meaning can also be done at the code level.  A distinct sign of a bad, complected codebase is when there is no meaningful distinction between the service code and the controller code driving it.  You find functions that have service and controller level concerns.</p>
-<h1 id="emergent-antipatterns">Emergent Antipatterns</h1>
-<p>There are two very common things you will find that get thrown in the implementation of a service function:</p>
-<ul>
-<li>Validation</li>
-<li>Data Loading</li>
-</ul>
-<h2 id="validation">Validation</h2>
-<p>Consider an endpoint in the form of /widgets/{id}.  If you pass an id to a non-existent widget, you want this controller to pass a 404 Not Found back.  Let&rsquo;s say we have:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
-</span></span><span style="display:flex;"><span>    Widget <span style="color:#a6e22e">getWidget</span>(String widgetId);
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>Let&rsquo;s say we create an implementation of <code>getWidget</code> that throws an <code>HttpNotFoundException</code> if no <code>Widget</code> is found for the given id.  This thought experiment should end very abruptly with the case of reusing this <code>WidgetService</code> for somewhere other than a web service call (e.g. a JMSListener, etc).  It is a problem because we put the concerns of the caller code (http return codes) inside the service call.  If we did that, and honest name for the interface would be something like <code>HttpWidgetService</code>.</p>
-<p>Let&rsquo;s loop back to the main point, validation is a <em>driver</em> concern because the service does not (and <em>should not</em>) know all the possible use case or failure conditions of the calling code.</p>
-<h2 id="data-loading">Data Loading</h2>
-<p>Here&rsquo;s a tricky case.  What&rsquo;s wrong with this code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, String widgetId)
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>Validation is a driver level concern!  Ok, ok, we know <em>that</em> is an issue.  What else?</p>
-<p>Did you make the presumption that <code>Invoice</code>s and <code>Widget</code>s reside in the same database?  What if they are in different microservices?  This can lead to interesting problems because you are presuming another thing about the caller.  You&rsquo;re presuming that the loading a <em>single</em> invoice and widget is the only IO the caller needs to perform.  Ok, let&rsquo;s upgrade this service:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>We&rsquo;ve solved it, right?  Nope.  It&rsquo;s not that easy.  Let&rsquo;s consider the case that we actually have a batch controller that actually takes a batch of several invoices with their respective widgets.  That will still produce <em>n</em> queries per batch.  The solution is to do this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoice</span>(String invoiceId) {
-</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> foundInvoices <span style="color:#f92672">=</span> getInvoices(Collections.<span style="color:#a6e22e">singletonList</span>(invoiceId));
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (foundInvoices.<span style="color:#a6e22e">isEmpty</span>()) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">empty</span>();
-</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">of</span>(foundInvoices.<span style="color:#a6e22e">get</span>(0));
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoices</span>(String invoiceId);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(Invoice invoice, Collection<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets);
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>This way, a controller can determine how to optimally perform IO.  That means the code driving this service would look like.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidget</span>(String widgetId) { ... }
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidgets</span>(List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceWebController</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> WidgetService widgetService;
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> InvoiceService invoiceService;
-</span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> HttpResponse<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">updateOrder</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> newWidgetIds) {
-</span></span><span style="display:flex;"><span>      Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> possibleInvoice <span style="color:#f92672">=</span> invoiceService.<span style="color:#a6e22e">getInvoice</span>(invoiceId);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (possibleInvoice.<span style="color:#a6e22e">isEmpty</span>()) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">notFound</span>(INVOICE_NOT_FOUND);
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>      Invoice invoice <span style="color:#f92672">=</span> possibleInvoice.<span style="color:#a6e22e">get</span>();
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets <span style="color:#f92672">=</span> widgetService.<span style="color:#a6e22e">getWidgets</span>(newWidgetIds);
-</span></span><span style="display:flex;"><span>      
-</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> missingWidgetIds <span style="color:#f92672">=</span> findMissingWidgetIds(newWidgetIds, widgets);
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>missingWidgetIds.<span style="color:#a6e22e">isEmpty</span>()) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">notFound</span>(WIDGETS_NOT_FOUND <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> missingWidgetIds);
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      invoiceService.<span style="color:#a6e22e">addWidget</span>(invoice, widgets);
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">ok</span>(invoice);
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    ...
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>That reads very&hellip; imperatively.  I gentally refer the reader back to the first paragraph.</p>
+    <div class="post_body"><p>The primary point of good Software Design is to separate out <em>what</em> your code does from <em>how</em> your code does it.  Being able to make this distinction in real time when coding is critical.  Let’s explore.</p>
+<h1 id="core-versus-shell">Core versus Shell</h1>
+<p>Look hard enough in the right places and you&rsquo;ll find the saying: ”Functional Core; Imperative Shell”.  It’s an interesting and useful mantra.  You could also equally say “Object Oriented Core; Imperative Shell”.  Here&rsquo;s another piece of truth embedded in said statement: <em>how</em> you do something is separate from <em>what</em> your code does.</p>
+<p>Consider the case of a web server.  <em>What</em> your web server does is respond to imperative commands coming in the form of HTTP verbs.  <em>How</em> it does it is running a Spring/http4s/Zio/etc application.  If I as a consumer have just documentation of your endpoints, it doesn’t matter to me how you fulfill those requests.  Let&rsquo;s say I have a UI.  <em>What</em> my UI does is drive your server and present data.  Inside your server code, you could have web controller code that drives service code.  Inside that server, you have web controllers driving service code.</p>
+<h1 id="separating-layers">Separating Layers</h1>
+<p>These principles hold true whether the client is using HTTP/JMS/etc.  You have <em>what</em> and all the piece of <em>how</em> you do it.  To restate the critical point in a different way: <em>How</em> a controller does something is composed of <em>what</em> services does.  The &ldquo;<em>how</em>&rdquo; that the service layer does that can be made up of &ldquo;<em>what</em>&rdquo; the lower level services do.</p>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Widget Web Page</td>
+<td>Widget Web Controller</td>
+</tr>
+<tr>
+<td>Widget Web Controller</td>
+<td>Widget Service</td>
+</tr>
+<tr>
+<td>Widget Service</td>
+<td>Widget Repository</td>
+</tr>
+<tr>
+<td>Widget Repository</td>
+<td>Spring JPA</td>
+</tr>
+</tbody>
+</table>
+<p>It&rsquo;s onions all the way down.</p>
+<p>Getting both <em>What</em> and <em>How</em> correct are critically important.  A web page isn&rsquo;t broken if the controller feeding it the wrong data.  A web controller isn&rsquo;t broken if the service layer is doing a faulty calculation.  These layers of abstraction around <em>what</em> and <em>how</em> better declare who owns a particular responsibility.  This also better delineates the scope of what should be tested where.  Even better is that if you build up features from the service layer through the controller, you have much less needs for feature flags.  Other benefits will be explored in future posts.</p>
+<p>(As a side note, <em>why</em> you are doing something is usually expressed in comments or in Jira tickets.  At minimum one of those two things <a href="https://www.reddit.com/r/ProgrammerHumor/comments/82zg9t/code_never_lies/">lie</a>)</p>
+<h1 id="you-can-not-always-derive-what-from-how">You can not always derive What from How</h1>
+<p>Given a particular quantity of ingredients, do the following:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>1) For each ingredient, place in food processor and blend together
+</span></span><span style="display:flex;"><span>  a) Tomatoes
+</span></span><span style="display:flex;"><span>  b) Apples
+</span></span><span style="display:flex;"><span>  c) Garlic
+</span></span><span style="display:flex;"><span>2) Heat oil in large skillet
+</span></span><span style="display:flex;"><span>...
+</span></span></code></pre></div><p><em>What</em> are you doing in this case?  These directions are perfectly clear in <em>how</em> to perform the tasks.  Now you could say one should be able to just read code and grok, but how many people caught the bug in the script?  Most people I hope, but I&rsquo;m certain someone would just skip over the fact we put <code>Apples</code> in the <a href="https://www.allrecipes.com/recipe/11966/best-marinara-sauce-yet/">marinara recipe</a>.  <em>What</em> we are doing (the title of the recipe) gives us critical clues as to intent.  (If we really wanted Apples in our Marinara recipe, we&rsquo;d better express that intent in the name: &ldquo;Apple Marinara Sauce&rdquo;)</p>
+<p>What your code does should be evident entirely in the public function signatures.  One thing I will not stand for is when a software engineer claims they are bad at naming things.  That tells me that you cannot express <em>what</em> you are doing.  Unless you are in a particular set of subdisciplines our field, most modern software engineers writing code need to be able to express <em>what</em> they are doing.</p>
+<p><em>How</em> you do something is the body of the function and any supporting private functions.  These can be subject to change, whether by extension, improvement or other refactorings.  Those are usually comparatively easy things to fix or clean.  They only need be indirectly tested as they are subject to modification at any point during a refactoring task.</p>
+<h2 id="unclear-intent-as-a-code-smell">Unclear Intent as a Code Smell</h2>
+<p><a href="https://en.wikipedia.org/wiki/Lisp_(programming_language)">LISP</a> is very cool to look at if you are looking at something simple like a factorial function.  LISP is much less fun to look at when you are three levels deep looking at <code>cons</code>, <code>car</code> and <code>cdr</code> expressions.  The nature of the language implicitly encourages programmers to inline expressions and has powerful meta-programming functionality.  While that can be fun to work with, it requires a very high amount of discipline to use cleanly.  Please take some time to look up examples of LISP if you are unfamiliar with the language.  Look for non-trivial examples and take note of the following elements:</p>
+<ol>
+<li>Whether the code can be quickly groked</li>
+<li>Whether the code requires being very keen on domain experience in the language</li>
+<li>Whether comments are used (or required) to explain the code</li>
+</ol>
+<p>I, the humble author, am trying to emphasis a code smell.  Code that does not express <em>what</em> it does is problematic.  LISP is a very extreme, if not impractical, language to prove this point but I think this provides necessary contrast to show my point.  If LISP requires intimate domain knowledge to understand the base intent of what a piece of code is doing, that is likely a problem.  If I say: &ldquo;I&rsquo;m cooking marinara sauce from scratch&rdquo;, then I would imagine most readers would have some mental imagery of what that task could look like.  This would hold true even if the reader has little to no practical experience cooking.  If you see a function call: <code>cookMarinaraSauce()</code>, you should be able to understand the intent.</p>
+<h1 id="further-topics">Further Topics</h1>
+<p>Splitting what from how allows us to derive which code has propriety knowledge of concepts.  This allows us to properly determine places to apply abstraction.  For example, does the widget controller own the idea of how a widget is persisted.  Abstraction and it&rsquo;s subtopics, such as unit testing and mocking, are left for future posts.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p>REST endpoints are <em>what</em> your web server does.  A <code>PUT</code> to <code>users/{userId}/settings</code> with a JSON body should be pretty obvious <em>what</em> it intends to do.</p>
+<p>REST endpoints are <em>how</em> your web page functions.  You could refactor the application to use SOAP, if for some need be, and not change an element on the page.  You also should be able to successfully run all tests on the page.</p>
+<p>On a practical level when dealing with code changes: <em>You only change WHAT an application does if you have a business requirement to do so.  You should not alter existing use cases when changing HOW an application does something.</em>  If you do not split <em>what</em> and <em>how</em> correctly, you make your job (code maintenance and improvement) more difficult.</p>
+<p>It can be difficult to split <em>what</em> from <em>how</em>, especially if you are the one defining both sides of that equation.  It can be hard conceptualizing a problem in both terms and factoring out <em>what</em> steps are as opposed to <em>how</em> the steps are performed.  Honestly, this is a golden age that if you <em>can</em> do said factoring, there are tools out there that perform 90%+ of the details of how to do things.  ORMs handle how to persist data.  Think of how ubiquitous JSON marshallers are.  The limits do more tend to how much you can imagine.</p>
+<p>While there are interesting criticisms of relying too much on other people to do the details makes you <a href="https://medium.com/@ajouamymiloud/the-difference-between-an-engineer-and-a-frameworker-992474ea46d1">less of an engineer</a>, I think there value to equaling the playing field to allow for more people to produce useful software.  Yes, someone has to know the difference between <a href="https://stackoverflow.com/questions/680541/quick-sort-vs-merge-sort">quicksort and mergesort</a> and <a href="https://en.wikipedia.org/wiki/Big_O_notation">Big O notation</a>, but how many use cases need that deep of engineering knowledge.  That said, not all engineers who possess those deep skills are good at naming things.</p>
+<p>I will say this: I have handled more bugs and pain in my professional life caused by code that poorly expressing <em>what</em> code does than code that had some tricky performance bug.</p>
 
     </div><div class="post_comments">
   
@@ -245,10 +232,10 @@
     <h2 class="mt-4">Featured Posts</h2>
     <ul>
       <li>
-        <a href="http://localhost:1313/post/001-driver-and-service-copy/" class="nav-link" title="Driver and Service">Driver and Service</a>
+        <a href="http://localhost:1313/post/002-what-from-how/" class="nav-link" title="Separate What From How">Separate What From How</a>
       </li>
       <li>
-        <a href="http://localhost:1313/post/002-what-from-how/" class="nav-link" title="What From How">What From How</a>
+        <a href="http://localhost:1313/post/001-driver-and-service/" class="nav-link" title="Driver and Service">Driver and Service</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/000-mighty-space/" class="nav-link" title="The Mighty Whitespace">The Mighty Whitespace</a>
@@ -278,7 +265,7 @@
       <nav class="tags_nav">
         <a href='http://localhost:1313/tags/antipatterns/' class="post_tag button button_translucent" title="antipatterns">
           ANTIPATTERNS
-          <span class="button_tally">1</span>
+          <span class="button_tally">2</span>
         </a>
         
         <a href='http://localhost:1313/tags/design/' class="post_tag button button_translucent" title="design">
@@ -293,6 +280,11 @@
         
         <a href='http://localhost:1313/tags/garbage-in-garbage-out/' class="post_tag button button_translucent" title="garbage in; garbage out">
           GARBAGE IN; GARBAGE OUT
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/naming/' class="post_tag button button_translucent" title="naming">
+          NAMING
           <span class="button_tally">1</span>
         </a>
         

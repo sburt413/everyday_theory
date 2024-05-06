@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Naming on Everyday Theory</title>
+    <link>http://localhost:1313/tags/naming/</link>
+    <description>Recent content in Naming on Everyday Theory</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 30 Apr 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/naming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Separate What From How</title>
+      <link>http://localhost:1313/post/002-what-from-how/</link>
+      <pubDate>Tue, 30 Apr 2024 12:00:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/002-what-from-how/</guid>
+      <description>
+        
+          
+            The primary point of Software Design is to separate out what your code does from how your code does it. Being able to make this distinction in real time when coding is critical. Let’s explore.
+Functional Core; Imperative Shell Look hard enough in the right places and you&amp;rsquo;ll find the saying: ”Functional Core; Imperative Shell”. It’s an interesting and useful mantra. You could also equally say “Object Oriented Core; Imperative Shell”.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

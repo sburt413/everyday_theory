@@ -106,8 +106,9 @@
 </svg>
 </span>
     <span class="post_date">
-      Apr 27, 2024</span>
-    <span class="post_time"> · 6 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/antipatterns/' title="Antipatterns" class="post_tag button button_translucent">Antipatterns
+      Apr 30, 2024</span>
+    <span class="post_time"> · 8 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/driver/service-code/' title="Driver/Service Code" class="post_tag button button_translucent">Driver/Service Code
+        </a><a href='http://localhost:1313/tags/antipatterns/' title="Antipatterns" class="post_tag button button_translucent">Antipatterns
         </a><a href='http://localhost:1313/tags/garbage-in-garbage-out/' title="Garbage In; Garbage Out" class="post_tag button button_translucent">Garbage In; Garbage Out
         </a>
     </span>
@@ -146,63 +147,97 @@
   </span>
   </div>
 
-    <div class="post_body"><p>Find the right people and you can have an hours long conversation over functional programming and object oriented programming.  Ultimately, I don’t think either side would fully get to the point.  The primary point is to separate out what your code does from how your code does it.  Once you have a deep understanding of that, everything starts to look like imperative programming.  Let’s dig deeper into this.</p>
-<h1 id="functional-core-imperative-shell">Functional Core; Imperative Shell</h1>
-<p>”Functional Core; Imperative Shell”.  It’s an interesting and useful mantra.  You could also equally say “Object Oriented Core; Imperative Shell”.  Consider the case of a web application.  What your web application does is respond to imperative commands in forms of the HTTP verbs.  How it does it is a Spring/http4s/Zio/etc application.  If I as a consumer just have documentation of your endpoints, it doesn’t matter to me how you do it.  I have code (say a UI) that drives your code (the server).  Inside the server code, you could have controller code that drives service code.  Onions all the way.</p>
-<h1 id="architectural-separation">Architectural Separation</h1>
-<p>Is this any different than exposing public methods?  Not very much at this point.  That said, there are still important principles you can apply.  In the (Clean Architecture diagram)[https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html] and the book of the same name, we see layers of separation.  While we could go in depth as to the meaning of each color means, there’s a very simple breakdown:</p>
-<p>The UI/Web/etc (Blue) and Controllers/Presenters/Gateways (Green) drive the Use Cases (Red) and Entities (Yellow).  Another way of putting it is that the innermost Red and Yellow layers are your services that add value to your product.</p>
-<p>This distinction exists because you want your product to provide that value regardless of the medium it does it in.  Stated as a hyperbole, you don’t want a full copy of your whole stack again when you produce a new mobile app.  Beyond that, how you do things can be subject to change.  Minimizing the cost of that change is a core concept of software architecture.</p>
-<h1 id="on-the-function-level">On The Function Level</h1>
-<p>Why am I using the verb “drive” rather than distinctly just say “controller”, because this same dynamic plays out at multiple levels of code.  While this dynamic of having an imperative shell around some core service does play out at a controller level, you could also have it play out between high level and collaborator services and lower level and persistence services.</p>
-<p>This is all pretty general to split your application&rsquo;s boundaries from the rest of your code.  I think the deeper hidden meaning can also be done at the code level.  A distinct sign of a bad, complected codebase is when there is no meaningful distinction between the service code and the controller code driving it.  You find functions that have service and controller level concerns.</p>
-<h1 id="emergent-antipatterns">Emergent Antipatterns</h1>
-<p>There are two very common things you will find that get thrown in the implementation of a service function:</p>
+    <div class="post_body"><p>Code has one of two roles:</p>
 <ul>
-<li>Validation</li>
-<li>Data Loading</li>
+<li>Add value to your business</li>
+<li>Drive the prior bullet point</li>
 </ul>
-<h2 id="validation">Validation</h2>
-<p>Consider an endpoint in the form of /widgets/{id}.  If you pass an id to a non-existent widget, you want this controller to pass a 404 Not Found back.  Let&rsquo;s say we have:</p>
+<p>The first bullet point is usually called <em>service</em> code.  It&rsquo;s the service your company is being paid to do.  The second bullet point can be one of many things, it could be controllers/webapps/etc.  It can be cron jobs that perform various functions.  It&rsquo;s the code for how people interact with the system.  Their functionality is usually described in the &lsquo;Use Case&rsquo; field of the Jira ticket.  I&rsquo;ll favor of the word &lsquo;driver&rsquo; for this article when talking about any production code that exercises the service.</p>
+<p>Why do these distinctions matter?  Let&rsquo;s dig in.</p>
+<h1 id="separation-of-concerns">Separation of Concerns</h1>
+<p>I&rsquo;m also sure many of you have heard the advice a function should only do one thing.  Let&rsquo;s take a look at a low level service function (<code>addWidget</code>):</p>
 <div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
-</span></span><span style="display:flex;"><span>    Widget <span style="color:#a6e22e">getWidget</span>(String widgetId);
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>Let&rsquo;s say we create an implementation of <code>getWidget</code> that throws an <code>HttpNotFoundException</code> if no <code>Widget</code> is found for the given id.  This thought experiment should end very abruptly with the case of reusing this <code>WidgetService</code> for somewhere other than a web service call (e.g. a JMSListener, etc).  It is a problem because we put the concerns of the caller code (http return codes) inside the service call.  If we did that, and honest name for the interface would be something like <code>HttpWidgetService</code>.</p>
-<p>Let&rsquo;s loop back to the main point, validation is a <em>driver</em> concern because the service does not (and <em>should not</em>) know all the possible use case or failure conditions of the calling code.</p>
-<h2 id="data-loading">Data Loading</h2>
-<p>Here&rsquo;s a tricky case.  What&rsquo;s wrong with this code:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, String widgetId)
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>Validation is a driver level concern!  Ok, ok, we know <em>that</em> is an issue.  What else?</p>
-<p>Did you make the presumption that <code>Invoice</code>s and <code>Widget</code>s reside in the same database?  What if they are in different microservices?  This can lead to interesting problems because you are presuming another thing about the caller.  You&rsquo;re presuming that the loading a <em>single</em> invoice and widget is the only IO the caller needs to perform.  Ok, let&rsquo;s upgrade this service:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>We&rsquo;ve solved it, right?  Nope.  It&rsquo;s not that easy.  Let&rsquo;s consider the case that we actually have a batch controller that actually takes a batch of several invoices with their respective widgets.  That will still produce <em>n</em> queries per batch.  The solution is to do this:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoice</span>(String invoiceId) {
-</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> foundInvoices <span style="color:#f92672">=</span> getInvoices(Collections.<span style="color:#a6e22e">singletonList</span>(invoiceId));
-</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (foundInvoices.<span style="color:#a6e22e">isEmpty</span>()) {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">empty</span>();
-</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">of</span>(foundInvoices.<span style="color:#a6e22e">get</span>(0));
-</span></span><span style="display:flex;"><span>      }
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoices</span>(String invoiceId);
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(Invoice invoice, Collection<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets);
-</span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>This way, a controller can determine how to optimally perform IO.  That means the code driving this service would look like.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidget</span>(String widgetId) { ... }
-</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidgets</span>(List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidgets</span>(String widgetIds);
 </span></span><span style="display:flex;"><span>  }
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceWebController</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceService</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> WidgetService widgetService;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Invoice <span style="color:#a6e22e">getInvoice</span>(String invoiceId) { ... }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addLineItems</span>(Invoice invoice, List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets) { ... }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidgets</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds) {
+</span></span><span style="display:flex;"><span>      Invoice invoice;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        invoice <span style="color:#f92672">=</span> getInvoice(invoiceId);
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">catch</span> (InvoiceNotFoundException infe) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> InvalidInvoiceException(infe);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets;
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        widgets <span style="color:#f92672">=</span> widgetService.<span style="color:#a6e22e">getWidgets</span>(widgetsIds);
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">catch</span> (WidgetNotFoundException wnfe) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> InvalidInvoiceException(wnfe);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>invoice.<span style="color:#a6e22e">isActive</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> InvalidInvoiceException(<span style="color:#e6db74">&#34;Invoice is not active&#34;</span>);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      addLineItems(invoice, widgets);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>I will contend that <code>addWidget</code> doesn&rsquo;t convey everything that the function does, and that it does <em>multiple</em> things.  It has critical concerns that are not expressed in the function name.  What if I used this function to rectify an invoice that had a problem?  I, as a programmer, could guess from the signature <code>addWidget(String, Collection&lt;String&gt;)</code> that it&rsquo;s likely to load data, but I&rsquo;m not going to guess that it only works on <em>active</em> invoices.  So the name would have to be changed to <code>addWidgetToActiveInvoice</code>.  Otherwise the person reviewing the code would have to dig through the implementation details to grok the function.</p>
+<p>If we were being more pedantic, I could argue the name should be <code>validateAndAddWidgetToActiveInvoice</code>.  The word <code>And</code> being an obvious <a href="https://en.wikipedia.org/wiki/Code_smell">code smell</a>.</p>
+<p>Let&rsquo;s jump back to the use case where we are rectifying an inactive invoice.  How do I resolve that situation?  Let&rsquo;s consider how we could do this:</p>
+<ul>
+<li>Don&rsquo;t touch <code>addWidget</code> so that we aren&rsquo;t touching &ldquo;working code&rdquo;, create an <code>addWidgetToInactiveInvoice</code> function and factor out common code between the two</li>
+<li>Rename <code>addWidget</code> to <code>addWidgetToActiveInvoice</code>, create a <code>addWidget</code> method that does exactly what it says it does and factor out common code between the two</li>
+</ul>
+<p>The first option has the benefit of a smaller source control diff.  That said, you are likely to have other developers hit the same snag you do when they read the existing code.  The second option creates a much larger diff and touches points in the code that are unrelated to your current ticket.</p>
+<p>This problem grows in magnitude by the number of callsites you have for the function.  It further grows if those callsites are not easily groked.  This shows the point that you must take great care to not bury controller concerns in service code.</p>
+<h1 id="validation-is-a-driver-level-concern">Validation is a Driver Level Concern</h1>
+<p>Let&rsquo;s consider this approach.  Let&rsquo;s make <code>addWidget</code> do what it says, nothing more.  That means that if a driver cares about whether the invoice is active or not, the driver will do the check explicitly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidgets</span>(String widgetIds);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> WidgetService widgetService;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Invoice <span style="color:#a6e22e">getInvoice</span>(String invoiceId) { ... }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addLineItems</span>(Invoice invoice, List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets) { ... }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidgets</span>(Invoice invoice, Collection<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets) {
+</span></span><span style="display:flex;"><span>      addLineItems(invoice, <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>(widgets));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Now this doesn&rsquo;t solve the issue of having to go through existing code paths that drive <code>addWidget</code> and updating them.  However, this does go to show that <em>validation is a driver level concern</em>.  Things that are invalid in one case are not necessarily invalid in another use case.  A batch process is not necessarily going to have an active <code>User</code> to validate against Access Control Lists.  Admin tools are likely going to need to get around certain business requirements to be maximally useful.</p>
+<p>Let&rsquo;s drive this home with one more common example: web controllers.  Let&rsquo;s imagine in this case we have our <code>addWidget</code> that (implicitly) does validation.  Let&rsquo;s (poorly) write some web controller code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceWebController</span> {
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> InvoiceService invoiceService;
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> HttpResponse<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">updateOrder</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> newWidgetIds) {
+</span></span><span style="display:flex;"><span>      Invoice invoice;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        invoice <span style="color:#f92672">=</span> invoiceService.<span style="color:#a6e22e">addWidgets</span>(invoiceId, newWidgetIds);
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">catch</span> (InvalidInvoiceException iie) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">badRequest</span>(iie.<span style="color:#a6e22e">getMessage</span>());
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">ok</span>(invoice);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>I will argue that a user giving a bad id is completely expectable.  This also suspciously looks like using exceptions to control code flow.  Both these practices are antipatterns.</p>
+<p>It <em>does</em> makes sense for a controller to validate inputs.  The controller know how to properly respond to its use case.  The proper way this web controller should look is:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceWebController</span> {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> HttpResponse<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">updateOrder</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> newWidgetIds) {
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Refactored invoice and widget services to return empty values for non-existent ids</span>
 </span></span><span style="display:flex;"><span>      Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> possibleInvoice <span style="color:#f92672">=</span> invoiceService.<span style="color:#a6e22e">getInvoice</span>(invoiceId);
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (possibleInvoice.<span style="color:#a6e22e">isEmpty</span>()) {
 </span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">notFound</span>(INVOICE_NOT_FOUND);
@@ -220,20 +255,83 @@
 </span></span><span style="display:flex;"><span>
 </span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">ok</span>(invoice);
 </span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Web controllers take a HTTP request and translate the date data into an ingestable format.  Then they drive service code.  That&rsquo;s their purpose.</p>
+<h1 id="data-loading-is-a-driver-level-concern">Data Loading is a Driver level concern</h1>
+<p>Here&rsquo;s a tricky case.  What&rsquo;s wrong with this code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, String widgetId);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Validation is a driver level concern!  Ok, ok, we know <em>that</em> is an issue.  What else?</p>
+<p>Did you make the presumption that <code>Invoice</code>s and <code>Widget</code>s reside in the same database?  What if they are in different microservices?  This can lead to interesting problems because you are presuming another thing about the caller.  You&rsquo;re presuming that the loading a <em>single</em> invoice and widget is the only IO the caller needs to perform.  Ok, let&rsquo;s upgrade this service:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(String invoiceId, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>We&rsquo;ve solved it, right?  Nope.  It&rsquo;s not that easy.  Let&rsquo;s consider the case that we actually have a batch controller that actually takes a batch of several invoices with their respective widgets.  That will still produce <em>n</em> queries per batch.  The solution is to do this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoice</span>(String invoiceId) {
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> foundInvoices <span style="color:#f92672">=</span> getInvoices(Collections.<span style="color:#a6e22e">singletonList</span>(invoiceId));
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (foundInvoices.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">empty</span>();
+</span></span><span style="display:flex;"><span>      } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> Optional.<span style="color:#a6e22e">of</span>(foundInvoices.<span style="color:#a6e22e">get</span>(0));
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoices</span>(Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> invoiceIds);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addWidget</span>(Invoice invoice, Collection<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>This way, a controller can determine how to optimally perform IO.  That means the code driving this service would look like.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">WidgetService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidget</span>(String widgetId) { ... }
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getWidgets</span>(Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> widgetIds);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">default</span> Optional<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoice</span>(String invoiceId) { ... }
+</span></span><span style="display:flex;"><span>    List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getInvoices</span>(Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> invoiceIds);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceWebController</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> WidgetService widgetService;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> InvoiceService invoiceService;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> HttpResponse<span style="color:#f92672">&lt;</span>Collection<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">updateOrders</span>(Map<span style="color:#f92672">&lt;</span>String, Collection<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;&gt;</span> invoiceIdToNewWidgetIds) {
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> allInvoices <span style="color:#f92672">=</span> invoiceService.<span style="color:#a6e22e">getInvoices</span>(invoiceService.<span style="color:#a6e22e">keySet</span>());
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> missingInvoiceIds <span style="color:#f92672">=</span> findMissingInvoiceIds(invoiceService.<span style="color:#a6e22e">keySet</span>(), allInvoices);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>missingInvoiceIds.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">notFound</span>(INVOICES_NOT_FOUND <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> missingInvoiceIds);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> allWidgets <span style="color:#f92672">=</span> widgetService.<span style="color:#a6e22e">getWidgets</span>(flatten(invoiceIdToNewWidgetIds.<span style="color:#a6e22e">values</span>()));
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      List<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> missingWidgetIds <span style="color:#f92672">=</span> findMissingWidgetIds(newWidgetIds, widgets);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>missingWidgetIds.<span style="color:#a6e22e">isEmpty</span>()) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">notFound</span>(WIDGETS_NOT_FOUND <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;: &#34;</span> <span style="color:#f92672">+</span> missingWidgetIds);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Transform the map of id-&gt;ids to map of Invoice-&gt;Widgets</span>
+</span></span><span style="display:flex;"><span>      Map<span style="color:#f92672">&lt;</span>Invoice, List<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;&gt;</span> invoiceToNewWidgets <span style="color:#f92672">=</span> mapValues(invoiceIdToNewWidgetIds, allInvoices, allWidgets);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      invoiceToNewWidgets.<span style="color:#a6e22e">forEach</span>(invoiceService::addWidgets);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> HttpResponse.<span style="color:#a6e22e">ok</span>(invoiceToNewWidgets.<span style="color:#a6e22e">keySet</span>());
+</span></span><span style="display:flex;"><span>    }
 </span></span><span style="display:flex;"><span>    ...
 </span></span><span style="display:flex;"><span>  }
-</span></span></code></pre></div><p>That reads very&hellip; imperatively.  I gentally refer the reader back to the first paragraph.</p>
-<h1 id="garbage-in-garbage-out">Garbage In; Garbage Out</h1>
-<p>You could ask for <code>InvoiceService</code>: what if I as the service get an invalid <code>Widget</code>.  The answer is simply that you have a programming error in your controller code.  The statement &ldquo;Garbage In; Garbage Out&rdquo; exists for a reason.  If you want to guard against someone creating a rogue <code>Widget</code>, qualify the constructors with <code>private</code> or <code>protected</code>.  Beyond that, you can use static analysis to find all the callsites that call the constructor (IntelliJ&rsquo;s Call Hierarchy is your friend in these cases).  If you truly believe there is some unavoidable risk to delgating this responsibility to the driving code, I humbly suggest that the reader update their test suites and revisit the issue.</p>
-<p>Forcing callers to do validation also provides the benefit of failing early which prevents very difficult to debug classes of errors.  Burying IO as a side effect makes it difficult to reason about the performance of your code.  Surfacing the IO make it makes it much easier to reason about and optimize your code.</p>
+</span></span></code></pre></div><h1 id="garbage-in-garbage-out">Garbage In; Garbage Out</h1>
+<p>You could ask for the case of <code>InvoiceService</code>: what if I as the service get an invalid <code>Widget</code>.  The answer is simply that you have a programming error in your driver code.  The statement <a href="https://en.wikipedia.org/wiki/Garbage_in,_garbage_out">&ldquo;Garbage In; Garbage Out&rdquo;</a> exists for a reason.  If you want to guard against someone creating a rogue <code>Widget</code> instance, qualify the constructors with <code>private</code> or <code>protected</code>.  Beyond that, you can use static analysis to find all the callsites that call the constructor (IntelliJ&rsquo;s &ldquo;Call Hierarchy&rdquo; is your friend).  Make it so that the only code paths that instantiate the object are <em>inside</em> the service code.  If you truly believe there is some unavoidable risk to delgating this responsibility to the driving code, I humbly suggest updating test suites and revisit the issue.</p>
+<p>Failing early in the driver code prevents classes of bugs that are very difficult to debug.  Burying IO as a side effect makes it difficult to reason about the performance of your code.  Surfacing the IO make it makes it much easier to reason about and optimize your code.  Explicit is always better than implicit.</p>
 <h1 id="conclusion">Conclusion</h1>
-<p>Don&rsquo;t bury concerns of the code driving in the service code.  Those prosumptions will eventually yield hidden costs.  This can be difficult because usually the same person writing the code being driven is writing the code doing the driving.</p>
-<p>If you are writing a service, don&rsquo;t presume:</p>
+<p>There is a hidden danger in burying driver level concerns in service code.  Those hidden presumptions will eventually yield actual costs.  Finding these hidden presumptions can be difficult because usually the same person writing the code being driven is writing the code doing the driving.  Get used to wearing different hats simulatenously.  Be your own devil&rsquo;s advocate.  Instead of just asking &ldquo;what could go wrong with this code block&rdquo;, also ask &ldquo;what assumption about this function could a caller overlook&rdquo;.</p>
+<p>For now, if you are writing a service, don&rsquo;t presume:</p>
 <ul>
-<li>How an error case is handled (if it is even an error)</li>
-<li>How to optimize IO</li>
+<li>What is an error in the driving code (if it is even an error)</li>
+<li>How callers wish to structure their IO</li>
 </ul>
+<p>We&rsquo;ll explore more examples in future posts.</p>
 
     </div><div class="post_comments">
   
@@ -256,7 +354,7 @@
     <h2 class="mt-4">Featured Posts</h2>
     <ul>
       <li>
-        <a href="http://localhost:1313/post/001-driver-and-service-copy/" class="nav-link" title="Driver and Service">Driver and Service</a>
+        <a href="http://localhost:1313/post/002-what-from-how/" class="nav-link" title="What From How">What From How</a>
       </li>
       <li>
         <a href="http://localhost:1313/post/001-driver-and-service/" class="nav-link" title="Driver and Service">Driver and Service</a>
@@ -273,7 +371,12 @@
       <nav class="tags_nav">
         <a href='http://localhost:1313/categories/coding/' class="post_tag button button_translucent" title="coding">
           CODING
-          <span class="button_tally">3</span>
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='http://localhost:1313/categories/architecture/' class="post_tag button button_translucent" title="architecture">
+          ARCHITECTURE
+          <span class="button_tally">1</span>
         </a>
         
         
@@ -284,12 +387,22 @@
       <nav class="tags_nav">
         <a href='http://localhost:1313/tags/antipatterns/' class="post_tag button button_translucent" title="antipatterns">
           ANTIPATTERNS
-          <span class="button_tally">2</span>
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/design/' class="post_tag button button_translucent" title="design">
+          DESIGN
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/driver/service-code/' class="post_tag button button_translucent" title="driver/service code">
+          DRIVER/SERVICE CODE
+          <span class="button_tally">1</span>
         </a>
         
         <a href='http://localhost:1313/tags/garbage-in-garbage-out/' class="post_tag button button_translucent" title="garbage in; garbage out">
           GARBAGE IN; GARBAGE OUT
-          <span class="button_tally">2</span>
+          <span class="button_tally">1</span>
         </a>
         
         <a href='http://localhost:1313/tags/thoughts/' class="post_tag button button_translucent" title="thoughts">
