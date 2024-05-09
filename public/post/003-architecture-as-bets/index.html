@@ -2,36 +2,38 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  data-figures=""
+  data-figures="true"
+  
+    class="page"
   
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Categories | Everyday Theory</title>
+<title>Software Engineering as Bets | Everyday Theory</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="Engineering decisions should be viewed as future bets." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Categories" />
+<meta name="twitter:title" content="Software Engineering as Bets" />
 <meta name="twitter:image" content="http://localhost:1313/"/>
-<meta property="og:url" content="http://localhost:1313/categories/" />
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="http://localhost:1313/post/003-architecture-as-bets/" />
+<meta property="og:title" content="Software Engineering as Bets" />
+<meta property="og:description" content="Engineering decisions should be viewed as future bets." />
 <meta property="og:image" content="http://localhost:1313/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/categories/">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/index.xml" title="Everyday Theory" />
+<link rel="canonical" href="http://localhost:1313/post/003-architecture-as-bets/">
 
 
 
@@ -47,8 +49,8 @@
 
   </head>
   <body
-    data-code="100"
-    data-lines="false"
+    data-code="10"
+    data-lines="true"
     id="documentTop"
     data-lang="en"
   >
@@ -93,19 +95,10 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/categories/architecture/" title="Architecture">Architecture</a>
-      </h3>
-      
+  <article class="post_content">
+    <h1 class="post_title">Software Engineering as Bets</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -113,19 +106,23 @@
 </svg>
 </span>
     <span class="post_date">
-      May 9, 2024</span>
-    <span class="post_time"> · 0 min read</span>
+      May 8, 2024</span>
+    <span class="post_time"> · 10 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/design/' title="Design" class="post_tag button button_translucent">Design
+        </a><a href='http://localhost:1313/tags/chess/' title="Chess" class="post_tag button button_translucent">Chess
+        </a><a href='http://localhost:1313/tags/gambling/' title="Gambling" class="post_tag button button_translucent">Gambling
+        </a>
+    </span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Architecture&url=http%3a%2f%2flocalhost%3a1313%2fcategories%2farchitecture%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=Software%20Engineering%20as%20Bets&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f003-architecture-as-bets%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fcategories%2farchitecture%2f&t=Architecture" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f003-architecture-as-bets%2f&t=Software%20Engineering%20as%20Bets" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -139,7 +136,7 @@
 </svg>
 
     </a>
-    <a href="http://localhost:1313/categories/architecture/" title="Copy Link" class="link link_yank">
+    <a href="http://localhost:1313/post/003-architecture-as-bets/" title="Copy Link" class="link link_yank">
       <svg class="icon">
   <title>copy</title>
   <use xlink:href="#copy"></use>
@@ -150,87 +147,68 @@
   </span>
   </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="http://localhost:1313/categories/architecture/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class="post_body"><p>Chess has a long history of structured openings.  You have a set of steps that put you in a known position, with known strengths and weaknesses.  You basically start the game several moves in to the game.  From the opening, you have several options to branch out from.  There is also a common nomenclature.  If I say, <a href="https://en.wikipedia.org/wiki/Queen%27s_Gambit">&ldquo;Queen&rsquo;s Gambit&rdquo;</a>&hellip; honestly most people will think of the Netflix series.  In reality, the term does refer to an actual opening with particular piece positions that a chess expert should be able to visualize from just the name alone.  Presumably, an expect would be able to think of several counters to the opening.  As a senior software engineer, you should have several design patterns to solve common problems in your head&hellip; and know the potential downfalls for each one.</p>
+<p>I saw in college a professor and student playing (on an actual board with a clock, not online) and they both played the exact same opening.  And by the exact same, neither the professor nor student were actually paying attention to what the other was doing.  They were almost blindly moving pieces regardless of what the opponent was doing.  Let&rsquo;s see how this relates to software engineering.</p>
+<h1 id="it-depends">It Depends</h1>
+<p>The answer to every question in Software Engineer is &ldquo;it depends&rdquo;.  Parroting that line can get you far, but there is an obvious follow up question: &ldquo;What does it depend on?&rdquo;.  To answer that you need to know what your position and resources are.  In this case, it&rsquo;s always good to refer to <a href="https://datatracker.ietf.org/doc/html/rfc1925#section-2">RFC 1925 Section 2, Point 6a</a> (I am aware of the publication date of this RFC and the fact this advise is repeated in several places).  Good/Fast/Cheap, Pick 2.  Embedded in this is the fact that what matters depends on the context.  Consider these two features:</p>
+<ul>
+<li>Feature A: this is a table stakes feature in your industry and your emergent product doesn&rsquo;t have it</li>
+<li>Feature B: there is a growing market need for a new feature to take advantage of the opportunity</li>
+</ul>
+<h2 id="time">Time</h2>
+<p>The cost and value of doing something can also be weighted against how long it will take to do it and the necessity to the business.  Don&rsquo;t underestimate the value of time.  If one a chessboard, you can set up checkmate in 5 moves, it doesn&rsquo;t matter if your opponent can checkmate you in 3.  Say you can build the equivalent of a <a href="https://en.wikipedia.org/wiki/Category_killer">category killer</a> in a software market.  If it takes you 5 years (e.g. forever) to get it to market, your competition can likely beat you to the punch.  Beyond that, there is plenty that can happen in that time which would turn the market against you.</p>
+<h2 id="space">Space</h2>
+<p>You don&rsquo;t spend $100 on a safe to store $50.  Engineering time is finite and costly.  You only have so much space on the schedule you can spend.  You have less if you try to split that calendar time between multiple objectives.  Don&rsquo;t spend that time adding perfect code coverage to a module if it is unlikely to get changed.  Don&rsquo;t rewrite working code without getting a tangible benefit:</p>
+<ul>
+<li>Cost reduction on maintenance and future improvements</li>
+<li>Necessary performance improvements</li>
+</ul>
+<h1 id="predicting-the-future">Predicting the Future</h1>
+<p>You can&rsquo;t predict the future.  You product, even if best in class, could still get beaten out by competitors.  I&rsquo;ve seen it happen.  No plan that you make is guaranteed to yield the predicted outcome.  Agile in it&rsquo;s purest form is meant to reduce iteration cycles so that plans can adjust based on the fact that you know more tomorrow than you do today.  No plan survives contact with the enemy.  That leave us with two questions: why do we do it and what is a good plan?</p>
+<h2 id="bets">Bets</h2>
+<p>So, we have finite resource that can be spent on tasks that have potentially ill defined value.  Let&rsquo;s go back to chess for a second.  You are trying be in the best position.  That means your pieces are in position to control and threaten more of the board.  Gaining that position takes time (moves) and material (pieces).  On your move, you have to choose whether moving one piece <em>now</em> gives you more of an advantage, without opening yourself up for problems later in the game.</p>
+<p>If you dedicate 100% of your calendar to new feature development, you leave yourself open for bugs to slip though and code quality issues.  You also risk doing feature work that will yield zero value.  You also leave no spare capacity if critical issues or opportunities comes up.  So if you are doing all this without perfect knowledge, what are you doing?  The answer is betting.</p>
+<p>There are people who can competently gamble to the point it is their literal profession.  In our profession, it&rsquo;s a bit more obtuse.  The key to being a good software engineer is giving yourself options in all situations and minimizing the cost of &ldquo;failure&rdquo;.  Google has had a culture where they literally celebrated failure.  Don&rsquo;t let anyone convince you failure isn&rsquo;t an option, because it&rsquo;s certainly always a possibility.  No amounts of scrum or planning or spreadsheets removes that possibility.  (Conversely, massive amount of planning can paradoxically guarantee that failure)</p>
+<h1 id="architecture">Architecture</h1>
+<p>Each abstraction you introduce creates a cost.  Indirections make code harder to follow.  It also allows makes it cheaper to change your mind later.  Let&rsquo;s say you introduce promiscuous raw SQL in to your code (Uncle Bob&rsquo;s Clean Architecture has an example of this).  Let&rsquo;s say you needed to migrate a group of tables to a different database server.  You have to grep the entirety of your code to find all the reference to the tables and manually pull things apart.  That is a lot more expensive than using a persistence service and looking up references to it.  Starting by creating the persistence service has an initial cost.  That&rsquo;s the money you put down on the bet.  If you never have to change the persistence, you lose the bet.  If your service is wrong, you lose the bet and more.  Whether to make the bet depends on the cost of putting down the bet and the payoff for whether you are right or not.  Just a humble reminder, sometimes being wrong once in your career is enough to inform the rest of your career.</p>
+<h2 id="standard-bets">Standard Bets</h2>
+<p>I am keenly aware that the implication of what I&rsquo;m saying is that <a href="https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller">Model-View-Controller</a> is indeed a bet.  It probably has 100-1 odds in your favor, but it&rsquo;s still a bet.</p>
+<p>Microservices are a bet.  You don&rsquo;t get orchestration of a kubernetes cluster for free.  It requires specialized knowledge and tools to manage.  What do you get for that cost: a mature tool stack and scalability.  That said, I can teach a new graduate how to deploy a war file into an old Tomcat instance.  If your application can be serviced by a single server over the course of the applications lifetime, what&rsquo;s the better choice?</p>
+<p>Most industry standards are there for a reason.  Most of the reasons suit most of the people&rsquo;s use cases.  Just remember that not everything in a woodworking shop is a nail.</p>
+<h1 id="tools-of-the-trade">Tools of the Trade</h1>
+<p>So &ldquo;it depends&rdquo;.  It depends on the value of the objective.  It depends on the opportunity cost in not pursuing other objectives.  It depends on the value of the objective when you can achieve it.  It depends on known and unknown unknowns that can throw things off schedule.  A good software engineer will use the tools at their disposal to reduce the risk.</p>
+<h2 id="frameworks">Frameworks</h2>
+<p>A framework is a bet.  If you choose Hibernate for persistence, it&rsquo;s has costs, risks and future implications for your application.  That said, you have a strong community to support you if you have problems and a well of talent to draw from if you need more experts on your team.</p>
+<p>Libraries usually offer you more flexibility as your code drives the library code.  Libraries are <a href="/post/002-what-from-how/"><em>how</em></a> your application does something, and thus able to be refactored.  Swapping out <a href="https://guava.dev/">Guava</a> for another library isn&rsquo;t going to require a complete rethink.</p>
+<p>This all comes down to: &ldquo;What&rsquo;s the cost/value tradeoff for using other people&rsquo;s code&rdquo;.  Having others actively doing maintenance, or even being able to do so yourself, is a valuable option.</p>
+<p>Remember, though, if you use other people&rsquo;s services, you get what you pay for.  If you don&rsquo;t have an SLA and are dependent upon a third party service, your don&rsquo;t control all the on/off switches to your application.  For a community fan site, that probably is ok.  For a banking app, less so.</p>
+<h2 id="iteration-cycles">Iteration Cycles</h2>
+<p>The most valuable tool, by far, that you can have in this profession is short iteration cycles.  If a project is going to take three months, is it worth it to take a week to do a proof of concept.  That depends on the certainty of design.  It also depends on deadlines.  If you aren&rsquo;t up against a deadline, 3.25 months might be within your calendar budget.  Even if you are certain of the design, starting with an MVP and iteratively building it up offers you flexibility in your plan.  If you do start running out of runway before a release, it&rsquo;s better to have a working product.  It&rsquo;s easier to determine what you need to cut from the future plan, rather than wonder what you can cram in.  Having an MVP and iterating usually builds more good will with stakeholders.  Good will is like house money when you place your future engineering bets.</p>
+<h1 id="estimates">Estimates</h1>
+<p>Let&rsquo;s consider a project that has a three month estimate.  That seems like a reasonable statement &ldquo;three months&rdquo;.  Statistically, though, this doesn&rsquo;t tell you nearly enough.  Say I went to a sports book and was given an option to bet on Newton or Middletown.  The thing is the odds are missing.  I don&rsquo;t know what the odds and payout are.  Back to our estimate, does &ldquo;three months&rdquo; mean: &ldquo;this will take no more than three months&rdquo;?  Does it mean: &ldquo;50/50 shot this gets done in three month&rdquo;?  Is that just a <a href="https://en.wikipedia.org/wiki/Scientific_wild-ass_guess">SWAG</a> that should never, ever be shown to management.</p>
+<p>If I was not in engineering, I would imagine that I would want to know what I&rsquo;m getting in terms of features and how likely that is.  Does slippage in the schedule matter?  Does slippage in the functionality matter?  Defining where are the timelines and stretch goals are important.  If someone is forcing you to make a bad bet, make sure you tell them the odds.</p>
+<h1 id="yagni">YAGNI</h1>
+<p>There was an interesting perspective put in a <a href="https://www.youtube.com/watch?v=Cd9aRtwj9xA">video</a> about over engineering.  It&rsquo;s a compelling thought to apply <a href="https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it">YAGNI</a> to cloud services.  It&rsquo;s nice to have cloud services handle everything it does for you.  I wouldn&rsquo;t want to manually handle services across multiple availability zones.  That said, does every application need to work across availability zones?  Let&rsquo;s say you want to run <a href="https://aws.amazon.com/rds/">RDS</a>.  Are you happy with when you will get new features available.</p>
+<p>Is your application going to outgrow a monolith?  Does every entity in your domain need its own bounded context or can you group services together?  Maybe the answer doesn&rsquo;t matter because your team has the expertise and existing infrastructure to make the cost of adding the services to the cloud negligible.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p>There are several levels of expertise:</p>
+<ol>
+<li>Saying it depends</li>
+<li>Knowing what it actually depends on</li>
+<li>Knowing what it depends on and being able to enumerate the options going forward and their costs</li>
+</ol>
+<p>Just remember, the best engineers aren&rsquo;t psychic.  Even if they could read minds can&rsquo;t predict the future.  The best engineers reduce risk, enumerate the known risks and have contingency plans.  They communicate them and execute.  They fail gracefully and early when there are no better options.  They make the smart bets and put in all the necessary hedges.  At the end of the day, all professional engineering plans are gambles.</p>
 
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/categories/coding/" title="Coding">Coding</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Apr 30, 2024</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=Coding&url=http%3a%2f%2flocalhost%3a1313%2fcategories%2fcoding%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
+    </div><div class="post_comments">
+  
+  
+  
+</div>
 
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fcategories%2fcoding%2f&t=Coding" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
 
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
 
-    </a>
-    <a href="http://localhost:1313/categories/coding/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
 
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="http://localhost:1313/categories/coding/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li>
-      </li>
-    </ul>
-  </div>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
@@ -254,7 +232,7 @@
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
-        <a href="http://localhost:1313/post/003-software-engineering-as-bets/" class="nav-link" title="Software Engineering as Bets">Software Engineering as Bets</a>
+        <a href="http://localhost:1313/post/003-architecture-as-bets/" class="nav-link" title="Software Engineering as Bets">Software Engineering as Bets</a>
       </li>
     </ul>
     <div>
@@ -286,11 +264,6 @@
           <span class="button_tally">2</span>
         </a>
         
-        <a href='http://localhost:1313/tags/bets/' class="post_tag button button_translucent" title="bets">
-          BETS
-          <span class="button_tally">1</span>
-        </a>
-        
         <a href='http://localhost:1313/tags/chess/' class="post_tag button button_translucent" title="chess">
           CHESS
           <span class="button_tally">1</span>
@@ -298,6 +271,11 @@
         
         <a href='http://localhost:1313/tags/driver/service-code/' class="post_tag button button_translucent" title="driver/service code">
           DRIVER/SERVICE CODE
+          <span class="button_tally">1</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/gambling/' class="post_tag button button_translucent" title="gambling">
+          GAMBLING
           <span class="button_tally">1</span>
         </a>
         
@@ -326,20 +304,14 @@
           <span class="button_tally">1</span>
         </a>
         
-        <a href='http://localhost:1313/tags/yagni/' class="post_tag button button_translucent" title="yagni">
-          YAGNI
-          <span class="button_tally">1</span>
-        </a>
-        
         
       </nav>
     </div>
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

@@ -6,18 +6,34 @@
     <description>Recent content in Design on Everyday Theory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Apr 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/design/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 08 May 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/design/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>What From How</title>
+      <title>Architecture as Bets</title>
+      <link>http://localhost:1313/post/003-architecture-as-bets/</link>
+      <pubDate>Wed, 08 May 2024 12:00:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/003-architecture-as-bets/</guid>
+      <description>
+        
+          
+            Chess has a long history of structured openings. You have a set of steps that put you in a known position, with known strengths and weaknesses, several moves in to the game. From the opening, you have several options to branch out from. There is also a common nomenclature. If I say, &amp;ldquo;Queen&amp;rsquo;s Gambit&amp;rdquo;&amp;hellip; honestly most people will think of the Netflix series. In reality, the term does refer to an actual opening with particular piece positions that a chess expert should be able to visualize.
+          
+          
+        
+      </description>
+    </item>
+    
+    <item>
+      <title>Separate What From How</title>
       <link>http://localhost:1313/post/002-what-from-how/</link>
-      <pubDate>Tue, 30 Apr 2024 12:00:00 -0400</pubDate>
+      <pubDate>Mon, 06 May 2024 12:00:00 -0400</pubDate>
       
       <guid>http://localhost:1313/post/002-what-from-how/</guid>
       <description>
         
           
-            Find the right people and you can have an hours long conversation over functional programming and object oriented programming. Ultimately, I don’t think either side would fully get to the point. The primary point is to separate out what your code does from how your code does it. Once you have a deep understanding of that, everything starts to look like imperative programming. Let’s explore.
-Functional Core; Imperative Shell ”Functional Core; Imperative Shell”.
+            The primary point of good Software Design is to separate out what your code does from how your code does it. Being able to make this distinction in real time when coding is critical. Let’s explore.
+Core versus Shell Look hard enough in the right places and you&amp;rsquo;ll find the saying: ”Functional Core; Imperative Shell”. It’s an interesting and useful mantra. You could also equally say “Object Oriented Core; Imperative Shell”.
           
           
         

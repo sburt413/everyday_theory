@@ -6,11 +6,28 @@
     <description>Recent content on Everyday Theory</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 30 Apr 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 May 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Software Engineering as Bets</title>
+      <link>http://localhost:1313/post/003-software-engineering-as-bets/</link>
+      <pubDate>Thu, 09 May 2024 12:00:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/003-software-engineering-as-bets/</guid>
+      <description>
+        
+          
+            Chess has a long history of structured openings. You have a set of steps that put you in a certain position, with known strengths and weaknesses. You basically start the actual game several moves in. From the opening, you have several options to branch out from.
+There is also a common nomenclature. If I say, &amp;ldquo;Queen&amp;rsquo;s Gambit&amp;rdquo;&amp;hellip; honestly most people will think of the Netflix series. In reality, the term does refer to an actual opening that a chess expert should be able to visualize from just the name alone.
+          
+          
+        
+      </description>
+    </item>
+    
     <item>
       <title>Separate What From How</title>
       <link>http://localhost:1313/post/002-what-from-how/</link>
-      <pubDate>Tue, 30 Apr 2024 12:00:00 -0400</pubDate>
+      <pubDate>Mon, 06 May 2024 12:00:00 -0400</pubDate>
       
       <guid>http://localhost:1313/post/002-what-from-how/</guid>
       <description>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chess on Everyday Theory</title>
+    <link>http://localhost:1313/tags/chess/</link>
+    <description>Recent content in Chess on Everyday Theory</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 08 May 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/chess/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Architecture as Bets</title>
+      <link>http://localhost:1313/post/003-architecture-as-bets/</link>
+      <pubDate>Wed, 08 May 2024 12:00:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/003-architecture-as-bets/</guid>
+      <description>
+        
+          
+            Chess has a long history of structured openings. You have a set of steps that put you in a known position, with known strengths and weaknesses, several moves in to the game. From the opening, you have several options to branch out from. There is also a common nomenclature. If I say, &amp;ldquo;Queen&amp;rsquo;s Gambit&amp;rdquo;&amp;hellip; honestly most people will think of the Netflix series. In reality, the term does refer to an actual opening with particular piece positions that a chess expert should be able to visualize.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

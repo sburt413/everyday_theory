@@ -2,36 +2,38 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  data-figures=""
+  data-figures="true"
+  
+    class="page"
   
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Categories | Everyday Theory</title>
+<title>Software Engineering as Bets | Everyday Theory</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="Engineering decisions should be viewed as future bets." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Categories" />
+<meta name="twitter:title" content="Software Engineering as Bets" />
 <meta name="twitter:image" content="http://localhost:1313/"/>
-<meta property="og:url" content="http://localhost:1313/categories/" />
-<meta property="og:title" content="Categories" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="http://localhost:1313/post/003-software-engineering-as-bets/" />
+<meta property="og:title" content="Software Engineering as Bets" />
+<meta property="og:description" content="Engineering decisions should be viewed as future bets." />
 <meta property="og:image" content="http://localhost:1313/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/categories/">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/index.xml" title="Everyday Theory" />
+<link rel="canonical" href="http://localhost:1313/post/003-software-engineering-as-bets/">
 
 
 
@@ -47,8 +49,8 @@
 
   </head>
   <body
-    data-code="100"
-    data-lines="false"
+    data-code="10"
+    data-lines="true"
     id="documentTop"
     data-lang="en"
   >
@@ -93,19 +95,10 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/categories/architecture/" title="Architecture">Architecture</a>
-      </h3>
-      
+  <article class="post_content">
+    <h1 class="post_title">Software Engineering as Bets</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -114,18 +107,23 @@
 </span>
     <span class="post_date">
       May 9, 2024</span>
-    <span class="post_time"> · 0 min read</span>
+    <span class="post_time"> · 5 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/design/' title="Design" class="post_tag button button_translucent">Design
+        </a><a href='http://localhost:1313/tags/chess/' title="Chess" class="post_tag button button_translucent">Chess
+        </a><a href='http://localhost:1313/tags/bets/' title="Bets" class="post_tag button button_translucent">Bets
+        </a><a href='http://localhost:1313/tags/yagni/' title="YAGNI" class="post_tag button button_translucent">YAGNI
+        </a>
+    </span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
-    <a href="https://twitter.com/intent/tweet?text=Architecture&url=http%3a%2f%2flocalhost%3a1313%2fcategories%2farchitecture%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
+    <a href="https://twitter.com/intent/tweet?text=Software%20Engineering%20as%20Bets&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f003-software-engineering-as-bets%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>twitter</title>
   <use xlink:href="#twitter"></use>
 </svg>
 
     </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fcategories%2farchitecture%2f&t=Architecture" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
+    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f003-software-engineering-as-bets%2f&t=Software%20Engineering%20as%20Bets" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
       <svg class="icon">
   <title>facebook</title>
   <use xlink:href="#facebook"></use>
@@ -139,7 +137,7 @@
 </svg>
 
     </a>
-    <a href="http://localhost:1313/categories/architecture/" title="Copy Link" class="link link_yank">
+    <a href="http://localhost:1313/post/003-software-engineering-as-bets/" title="Copy Link" class="link link_yank">
       <svg class="icon">
   <title>copy</title>
   <use xlink:href="#copy"></use>
@@ -150,87 +148,52 @@
   </span>
   </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="http://localhost:1313/categories/architecture/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class="post_body"><p>Chess has a long history of structured openings.  You have a set of steps that put you in a certain position, with known strengths and weaknesses.  You basically start the actual game several moves in.  From the opening, you have several options to branch out from.</p>
+<p>There is also a common nomenclature.  If I say, <a href="https://en.wikipedia.org/wiki/Queen%27s_Gambit">&ldquo;Queen&rsquo;s Gambit&rdquo;</a>&hellip; honestly most people will think of the Netflix series.  In reality, the term does refer to an actual opening that a chess expert should be able to visualize from just the name alone.  Presumably, an expect would be able to think of several counters to the opening.  As a senior software engineer, you should have several design patterns to solve common problems in your head&hellip; and know the potential downfalls for each one.</p>
+<p>Let&rsquo;s go further in to this topic.</p>
+<h1 id="cost-and-value">Cost and Value</h1>
+<p>The answer to every question in Software Engineering is &ldquo;it depends&rdquo;.  There is an obvious follow up question: &ldquo;What does it depend on?&rdquo;.  To answer that you need to know what  your resources are and your position.  In this case, it&rsquo;s always good to refer to <a href="https://datatracker.ietf.org/doc/html/rfc1925#section-2">RFC 1925 Section 2, Point 6a</a>: Good/Fast/Cheap, Pick 2 (I am aware of the fact this advise is repeated in several places).  What of those three matter most?  The answer depends on the context.  Consider these two features:</p>
+<ul>
+<li>Feature A: this is a table stakes feature in your industry and your emergent product doesn&rsquo;t have it</li>
+<li>Feature B: there is a growing market need for a new feature to take advantage of a new opportunity</li>
+</ul>
+<p>Each situation evaluates Good/Fast/Cheap in different ways?</p>
+<p>The cost and value of doing something can also be weighted against how long it will take to do it.  Don&rsquo;t underestimate the value of time.  On a chessboard if you can set up checkmate in 5 moves, it doesn&rsquo;t matter if your opponent can checkmate you in 3.</p>
+<p>Say you can build the equivalent of a <a href="https://en.wikipedia.org/wiki/Category_killer">category killer</a> in a software market.  If it takes you 5 years (e.g. forever) to get something to market, your competition can likely beat you to the punch.  Beyond that, five years is also plenty time for the market to move in a different direction.</p>
+<p>Another point: you don&rsquo;t buy a $100 on a safe to store $50.  Engineering time is finite and costly.  You only have so much space on the schedule.  Always be mindful of the value you are getting.  Don&rsquo;t spend that time adding perfect code coverage to a tangential module if it is unlikely to get changed.  Don&rsquo;t rewrite working code without getting a tangible benefit.</p>
+<h1 id="predicting-the-future">Predicting the Future</h1>
+<p>You can&rsquo;t predict the future.  Your product, even if best in class, could still get beaten out by competitors.  No plan that you make is guaranteed to yield the predicted outcome.  To address this, Agile in it&rsquo;s purest form is meant to reduce iteration cycles so that plans can adjust based on the current situation.  That leave us with two questions: why do we plan and what is a good plan?</p>
+<h2 id="bets">Bets</h2>
+<p>We have finite resources that can be spent on tasks that have potentially ill defined value.  Let&rsquo;s go back to chess for a second.  You are moving your pieces so that you control and threaten more of the board.  Gaining that position takes time (moves) and material (pieces).  On your move, you have to decide whether moving one piece <em>now</em> gives you an advantage, without opening yourself up for problems later in the game.</p>
+<p>If you dedicate 100% of your calendar to new feature development, you leave yourself open for bugs to slip though and code quality issues.  You also risk doing feature work that will yield zero value.  You also leave no spare capacity if critical issues or opportunities comes up.</p>
+<p>If you don&rsquo;t build features, competitors can leave you in the dust.</p>
+<p>So if you are doing all this without perfect knowledge, what are you doing?  The answer making bets.</p>
+<p>The key to being a good software engineer is giving yourself options in all situations and minimizing the cost of &ldquo;failure&rdquo;.  Google has had a culture where they literally celebrated failure.  Don&rsquo;t let anyone convince you failure isn&rsquo;t an option, because it&rsquo;s certainly always a possibility.  No amounts of scrum or planning or Jira tickets or spreadsheets removes that possibility.</p>
+<h1 id="estimates">Estimates</h1>
+<p>What is a good bet in our profession?</p>
+<p>Let&rsquo;s consider a project that has an estimated time of three month.  That seems like a reasonable statement: &ldquo;three months&rdquo;.  Statistically, though, this doesn&rsquo;t tell you nearly enough.  Say I went to a sports book and was given an option to bet on a game between Newton or Middletown.  The thing is the odds are missing.  I&rsquo;m missing critical information of cost and value.  It is illogical to bet on the underdog without being offered a better payout.</p>
+<p>Back to our estimate, does &ldquo;three months&rdquo; mean: &ldquo;this will take no more than three months&rdquo;?  Does it mean: &ldquo;50/50 shot this gets done in three month&rdquo;?  Is that just a <a href="https://en.wikipedia.org/wiki/Scientific_wild-ass_guess">SWAG</a> that should never, ever be shown to management?  The differences in odds changes a plan from feasible to impractical.</p>
+<p>If I was not in engineering, I would imagine that I would want to both know what I&rsquo;m getting in terms of features and how likely I&rsquo;m getting it on schedule.  Does slippage in the schedule matter?  Does slippage in the functionality matter?  Defining where are the timelines and stretch goals are important.</p>
+<p>As an engineer, estimates are a way to tell people the odds.  If someone is forcing you to make a bad bet, make sure that you convey all the necessary information.</p>
+<h1 id="conclusions">Conclusions</h1>
+<p>There are several levels of expertise in our profession:</p>
+<ol>
+<li>Saying it depends</li>
+<li>Knowing what it actually depends on</li>
+<li>Knowing what it depends on and being able to enumerate the options going forward with their costs and risks</li>
+</ol>
+<p>The best engineers aren&rsquo;t psychic.  Even if they could read minds, they can&rsquo;t predict the future.  The best engineers enumerate, communicate and reduce the known risks and have contingency plans.  They understand and communicate all the costs and values.  They fail gracefully and early when there are no better options.  They make the smart bets and put in all the necessary hedges.  At the end of the day, all professional engineers are gamblers.</p>
 
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/categories/coding/" title="Coding">Coding</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Apr 30, 2024</span>
-    <span class="post_time"> · 0 min read</span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=Coding&url=http%3a%2f%2flocalhost%3a1313%2fcategories%2fcoding%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
+    </div><div class="post_comments">
+  
+  
+  
+</div>
 
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fcategories%2fcoding%2f&t=Coding" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
 
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
 
-    </a>
-    <a href="http://localhost:1313/categories/coding/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
 
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p></p>
-          
-          <br>
-          <a href="http://localhost:1313/categories/coding/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li>
-      </li>
-    </ul>
-  </div>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
@@ -337,9 +300,8 @@
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>
