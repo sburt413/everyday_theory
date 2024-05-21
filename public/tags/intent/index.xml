@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Intent on Everyday Theory</title>
+    <link>http://localhost:1313/tags/intent/</link>
+    <description>Recent content in Intent on Everyday Theory</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 11 May 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/intent/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Express Intent</title>
+      <link>http://localhost:1313/post/004-express-intent/</link>
+      <pubDate>Sat, 11 May 2024 12:00:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/004-express-intent/</guid>
+      <description>
+        
+          
+            Sometimes, it&amp;rsquo;s what you don&amp;rsquo;t say that hurts you the most. Let&amp;rsquo;s go.
+Side Effects A warning before we begin, I will use the words &amp;ldquo;side effects&amp;rdquo; heavily in this post. I come at this from the functional school of thought. Quite honestly, in said school of thought, &amp;ldquo;side&amp;rdquo; effects can be the very necessary things your system does. Writing to a database is technically a side effect. If something happens in the system outside the expected return value.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

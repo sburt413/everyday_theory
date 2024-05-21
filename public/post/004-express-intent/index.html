@@ -2,36 +2,38 @@
 <!DOCTYPE html>
 <html
   lang="en"
-  data-figures=""
+  data-figures="true"
+  
+    class="page"
   
   
   >
   <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
-<title>Coding | Everyday Theory</title>
+<title>Express Intent | Everyday Theory</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
 
+
 <meta property="og:locale" content="en" />
 
 <meta property="og:type" content="article">
-<meta name="description" content="" />
+<meta name="description" content="Function signatures matter. A lot." />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:creator" content="">
-<meta name="twitter:title" content="Coding" />
+<meta name="twitter:title" content="Express Intent" />
 <meta name="twitter:image" content="http://localhost:1313/"/>
-<meta property="og:url" content="http://localhost:1313/categories/coding/" />
-<meta property="og:title" content="Coding" />
-<meta property="og:description" content="" />
+<meta property="og:url" content="http://localhost:1313/post/004-express-intent/" />
+<meta property="og:title" content="Express Intent" />
+<meta property="og:description" content="Function signatures matter. A lot." />
 <meta property="og:image" content="http://localhost:1313/" />
 
 <link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/icons/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/icons/favicon-32x32.png">
 <link rel="manifest" href="http://localhost:1313/icons/site.webmanifest">
 
-<link rel="canonical" href="http://localhost:1313/categories/coding/">
-<link rel="alternate" type="application/rss+xml" href="http://localhost:1313/categories/coding/index.xml" title="Everyday Theory" />
+<link rel="canonical" href="http://localhost:1313/post/004-express-intent/">
 
 
 
@@ -47,8 +49,8 @@
 
   </head>
   <body
-    data-code="100"
-    data-lines="false"
+    data-code="10"
+    data-lines="true"
     id="documentTop"
     data-lang="en"
   >
@@ -93,19 +95,10 @@
 </header>
 
     <main>
-
-
-
+  
 <div class="grid-inverse wrap content">
-  <div>
-    <ul class="posts" id="posts">
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/post/004-express-intent/" title="Express Intent">Express Intent</a>
-      </h3>
-      
+  <article class="post_content">
+    <h1 class="post_title">Express Intent</h1>
   <div class="post_meta">
     <span><svg class="icon">
   <title>calendar</title>
@@ -114,7 +107,8 @@
 </span>
     <span class="post_date">
       May 11, 2024</span>
-    <span class="post_time"> · 7 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/intent/' title="Intent" class="post_tag button button_translucent">Intent
+    <span class="post_time"> · 8 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/intent/' title="Intent" class="post_tag button button_translucent">Intent
+        </a><a href='http://localhost:1313/tags/naming/' title="Naming" class="post_tag button button_translucent">Naming
         </a>
     </span>
     <span class="page_only">&nbsp;·
@@ -152,162 +146,139 @@
   </span>
   </div>
 
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p>Sometimes, it’s what you don’t say that hurts you the most. Let’s go.
-Side Effects A warning before we begin, I will use the words “side effects” heavily in this post. I come at this from the functional school of thought. Quite honestly, in said school of thought, “side” …</p>
-          
-          <br>
-          <a href="http://localhost:1313/post/004-express-intent/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
+    <div class="post_body"><p>Sometimes, it&rsquo;s what you don&rsquo;t say that hurts you the most.  Let&rsquo;s go.</p>
+<h1 id="side-effects">Side Effects</h1>
+<p>A warning before we begin, I will use the words &ldquo;side effects&rdquo; heavily in this post.  I come at this from the functional school of thought.  Quite honestly, in said school of thought, &ldquo;side&rdquo; effects can be the very necessary things your system does.  Writing to a database is technically a side effect.  If something happens in the system outside the expected return value, then I will refer to it as a &ldquo;side effect&rdquo;.</p>
+<p>Let&rsquo;s say we have an <code>addWidget</code> function, but in addition to writing the <code>Widget</code> to the database, it also updates a global count of <code>Widgets</code>.  The function name isn&rsquo;t <code>addWidgetAndUpdateGlobalCount</code>, so updating the global count is a hidden side effect of <code>addWidget</code>.</p>
+<p>Rather than attempting to formally define the concept of side effect, or attempt to quantify &ldquo;effect&rdquo; versus &ldquo;side effect&rdquo; versus &ldquo;hidden side effect&rdquo;, I should use the word &ldquo;side effect&rdquo; in any of those three cases.  Any mutation of input parameters will also be considered a &ldquo;side effect&rdquo;.</p>
+<h1 id="signatures-matter">Signatures Matter</h1>
+<p>A function signature should be sufficient to tell entirely <a href="/post/002-what-from-how/">what</a> a function does.  As a <a href="/post/001-driver-and-service/">consumer of code</a>, how a function does something should be immaterial to you.  If you must read the body of a function you are attempting to consume, that&rsquo;s serious a code smell.  Let&rsquo;s take <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Collections.html#reverse-java.util.List-">this</a> function signature from base Java:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">reverse</span>(List<span style="color:#f92672">&lt;?&gt;</span> list)
+</span></span></code></pre></div><p>We see that it take a <code>List</code> rather than <code>Collection</code>, which makes sense, order matters.  Now, does this mutate an input parameter?  Usually this is a no-no.  The name <code>reverse</code> doesn&rsquo;t tell us.  Is that a problem?  Nope.  That said, a <em>signature</em> isn&rsquo;t just the name.</p>
+<p>Look at the return type: <code>void</code>.  If you ever see <code>void</code> for a return type, immediately think &ldquo;side effects&rdquo;.  The obvious side effect in this situation is mutation of input parameters.  So we can pull that information from just those words.</p>
+<p>(A brief aside, <code>reverse</code> originates from the olden days of Java where, <em>at the time</em>, speed was a concern, thus mutation of input parameters was an acceptable tradeoff)</p>
+<h2 id="naming">Naming</h2>
+<p>Good naming requires extreme application of Murphy&rsquo;s Law.  Assume any possible misinterpretation of your function signature will happen, then address each of them.  Make <a href="https://ameliabedeliabooks.com/">Amelia Bedelia</a> your spirit animal.  Keep mental lists of bugs you&rsquo;ve encountered in the wild because bad naming habits.  When you write or touch function signatures, go through this list to make sure those bugs don&rsquo;t happen again.</p>
+<p>Consider the following signatures:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  Widget <span style="color:#a6e22e">createWidget</span>(Widget widget)
+</span></span></code></pre></div><p>Is the <code>Widget</code> I get back the same <code>Widget</code> I passed in?  That is ambiguous.</p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  Widget <span style="color:#a6e22e">createWidget</span>(String id, String name, <span style="color:#66d9ef">double</span> price)
+</span></span></code></pre></div><p>Does <code>create</code> imply that the object is to be persisted, or just instantiated?  <code>save</code> is much less ambiguous.</p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">saveWidget</span>(String id, String name, <span style="color:#66d9ef">double</span> price)
+</span></span></code></pre></div><p>Do we need <code>void</code> to signal the side effect?  It makes the intent more clear.  That said, the caller cannot retrieve the newly created object.  The call may actually need to do IO to retrieve the object.  In this case, we would want to return the new object.</p>
+<hr>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  Widget <span style="color:#a6e22e">saveWidget</span>(WidgetData data)
+</span></span></code></pre></div><p>For this, we&rsquo;ll make <code>WidgetData</code> as a <a href="https://refactoring.com/catalog/introduceParameterObject.html">parameter object</a>.  It is clearly the data we need to make a <code>Widget</code>, not the <code>Widget</code> itself.  That leaves it so that the return value is clearly the new resultant object.  The word <code>save</code> clearly indicates a persistence side effect.</p>
+<h1 id="ask-for-everything-you-need">Ask For Everything You Need</h1>
+<p>A function should ask for everything it needs to fulfill its purpose.  Let&rsquo;s consider a <code>buildInvoice</code> function.</p>
+<p>Do you need <code>Widget</code>s to build one?  Are we declaring this function in a service or controller?</p>
+<p>The class itself can ask for what it needs.  This can fulfill the needs of multiple functions in the class.  <a href="https://en.wikipedia.org/wiki/Dependency_injection">Dependency Injection</a> is your friend.  It would make sense that a <code>WidgetService</code> would need a <code>WidgetRepository</code> or some other access to a persistence layer.  It would make sense that an <code>OrderController</code> might need the <code>WidgetService</code>.  Make sure that you pick things that logically make sense, and always pick from the same or deeper levels in the system.  Controllers should only pick from services.  Services should only pick from other services and repositories.</p>
+<h2 id="example">Example</h2>
+<p>Consider this case in service code:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">enum</span> StateCode { ... }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">record</span> <span style="color:#a6e22e">Widget</span>(StateCode stateCode, String name) {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">InvoiceService</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">saveInvoice</span>(Invoice invoice) { ... }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">saveInvoices</span>(Collection<span style="color:#f92672">&lt;</span>Invoice<span style="color:#f92672">&gt;</span> invoice) { ... }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> Invoice <span style="color:#a6e22e">buildInvoice</span>(Collection<span style="color:#f92672">&lt;</span>Widget<span style="color:#f92672">&gt;</span> widgets) {
+</span></span><span style="display:flex;"><span>      Map<span style="color:#f92672">&lt;</span>Widget, Double<span style="color:#f92672">&gt;</span> widgetToPrice <span style="color:#f92672">=</span> pricingService.<span style="color:#a6e22e">getPrices</span>(widgets);
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">double</span> subtotal <span style="color:#f92672">=</span> widgets.<span style="color:#a6e22e">stream</span>()
+</span></span><span style="display:flex;"><span>                               .<span style="color:#a6e22e">mapToDouble</span>(widgetToPrice::get)
+</span></span><span style="display:flex;"><span>                               .<span style="color:#a6e22e">sum</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">double</span> taxRate <span style="color:#f92672">=</span> billingService.<span style="color:#a6e22e">getTaxRate</span>(widgets.<span style="color:#a6e22e">get</span>(0).<span style="color:#a6e22e">stateCode</span>());
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">double</span> tax <span style="color:#f92672">=</span> subtotal <span style="color:#f92672">*</span> taxRate;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">double</span> total <span style="color:#f92672">=</span> subtotal <span style="color:#f92672">+</span> tax;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> Invoice(widgets, total);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>What&rsquo;s the issue with this code?  It doesn&rsquo;t ask for a critical piece of information: what state do we use for the sales tax?  It implicitly assumes that the first widget has the state that we should use for the tax (sales tax is collected in the state of the purchaser, not the original location of the merchandise).  In short: tell in the signature, don&rsquo;t ask in the body.</p>
+<p>A good way to think about this is that is your function &lsquo;<em>a function of</em>&rsquo; the given data.  If you change <em>x</em> does <em>y</em> change?  If you change a parameter, does it change the output of the function?  If it does change the result then the function is <em>a function of</em> that input.  Unfortunately, as illustrated in the example in this section, what should and should not be factored out in to the function signature can often be obscure.  If faced with ambiguity, err on the side of declaring the need in the function signature.</p>
+<p>It is much easier to see the source of the issue in:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  widgetService.<span style="color:#a6e22e">buildInvoice</span>(widgets, widgets.<span style="color:#a6e22e">get</span>(0).<span style="color:#a6e22e">stateCode</span>())
+</span></span></code></pre></div><p>than in:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  widgetService.<span style="color:#a6e22e">buildInvoice</span>(widgets)
+</span></span></code></pre></div><h1 id="say-everything-that-you-are-going-to-do">Say Everything That You Are Going To Do</h1>
+<p>At some point you will hit a situation where it is reasonable to assume domain knowledge.  Not every function signature and every piece of code is going to be readily understandable to an outside coder.  That said, don&rsquo;t make it such that an outside developer will take six months to get up to speed on your product.  Say everything that a function does in its signature.</p>
+<p>Consider:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderController</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> OrderService orderService;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> WidgetService widgetService;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> InvoiceService invoiceService;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addToOrder</span>(Order order, Widget widget) {
+</span></span><span style="display:flex;"><span>      Invoice invoice <span style="color:#f92672">=</span> invoiceService.<span style="color:#a6e22e">getOrCreateInvoice</span>(order);
+</span></span><span style="display:flex;"><span>      addLineItem(order, widget);
+</span></span><span style="display:flex;"><span>      invoiceService.<span style="color:#a6e22e">addWidget</span>(invoice, widget);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addLineItem</span>(Order order, Widget widget) { ... }
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Let&rsquo;s say we had a new requirement that we need to reserve the widget in inventory before we can add it to a line item for the order:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">addToOrder</span>(Order order, Widget widget) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">boolean</span> successfullyReserved <span style="color:#f92672">=</span> reserveWidget(order, widget);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>successfullyReserved) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    Invoice invoice <span style="color:#f92672">=</span> invoiceService.<span style="color:#a6e22e">getOrCreateInvoice</span>(order);
+</span></span><span style="display:flex;"><span>    addLineItem(order, widget);
+</span></span><span style="display:flex;"><span>    invoiceService.<span style="color:#a6e22e">addWidget</span>(invoice, widget);
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>Let&rsquo;s look at the signature.  What does the return value <code>true</code> mean for <code>addToOrder</code>.  It means it was successful, right&hellip;  What does a <code>false</code> mean?  It means <a href="https://en.wikipedia.org/wiki/RTFM">RTFM</a>, and remember comments lie.</p>
+<p>There is a cute way this code could unexpectedly fail.  Let&rsquo;s unveil more code in the private implementation details of the other functions:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OrderController</span> {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addLineItem</span>(Order order, Widget widget) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (Objects.<span style="color:#a6e22e">isNull</span>(widget.<span style="color:#a6e22e">getId</span>())) {
+</span></span><span style="display:flex;"><span>        widget <span style="color:#f92672">=</span> widgetService.<span style="color:#a6e22e">createWidget</span>(widget);
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      ...
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">reserveWidget</span>(Widget widget) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">if</span> (Objects.<span style="color:#a6e22e">isNull</span>(widget.<span style="color:#a6e22e">getId</span>())) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Cannot reserve non-existent widget</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>      ...
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>So under what condition would <code>addToOrder</code> stop working where it was &lsquo;working&rsquo; before?  It would fail in cases where the <code>Widget</code> was not persisted prior to the <code>addToOrder</code> call.  The reservation call would return <code>false</code>, which would then cause <code>addToOrder</code> to return false.  The name <code>addToOrder</code> doesn&rsquo;t <em>say</em> that it will persist the <code>Widget</code>.  Creating the <code>Widget</code> if it doesn&rsquo;t exist is a side effect.  Any code that depends on this side effect becomes very hard to debug.</p>
+<p>Often you will find these &ldquo;conveniences&rdquo; (persisting the object for you) buried in service code.  Sadly, these sorts of &ldquo;conveniences&rdquo; are often depended upon in controller code.  It is often a hard and error prone process to untangle when there is controller level code buried in side effects of the service level.</p>
+<h2 id="function-naming">Function Naming</h2>
+<p>My rules for function naming are as such:</p>
+<ol>
+<li>Express everything the function does in the name</li>
+<li>Use the most concise wording</li>
+</ol>
+<p>These rules are ordered.  Do not make the wording more concise if you do not express everything the function does.  This means, it is better to be verbose than concise.</p>
+<h1 id="concision">Concision</h1>
+<p>There is a trick you can use to make signatures more concise: don&rsquo;t repeat yourself.  No, I do <em>not</em> mean the policy that is better stated as <a href="https://en.wikipedia.org/wiki/Single_source_of_truth">Single Source of Truth</a>.</p>
+<p>You can shorten <code>getWidgetByWidgetId(Id widgetId)</code> to <code>getWidget(Id widgetId)</code> since 9 times out of 10 you will see it in code as <code>Widget widget = getWidget(widgetId)</code>.  Seeing repetition in the same line is usually a clue you can apply this.</p>
+<h1 id="get-methods"><code>get</code> Methods</h1>
+<p>Don&rsquo;t ever add side effects in a <code>get</code> method.  Factor out side effects from existing <code>get</code> methods.  If naming a function with side effects and <code>get</code> comes up, open a thesaurus if necessary, there is usually a better verb you can use.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>Don&rsquo;t suck at naming.  Naming is about breaking down a problem and expressing the solution to another person (perhaps a future self).  If you don&rsquo;t make it easy to understand the solution, you are not a good problem solver.  Remember, at the end of the day, you aren&rsquo;t a coder or developer, you are a problem solver.</p>
 
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/post/001-driver-and-service/" title="Driver and Service">Driver and Service</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Apr 30, 2024</span>
-    <span class="post_time"> · 8 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/driver/service-code/' title="Driver/Service Code" class="post_tag button button_translucent">Driver/Service Code
-        </a><a href='http://localhost:1313/tags/antipatterns/' title="Antipatterns" class="post_tag button button_translucent">Antipatterns
-        </a><a href='http://localhost:1313/tags/garbage-in-garbage-out/' title="Garbage In; Garbage Out" class="post_tag button button_translucent">Garbage In; Garbage Out
-        </a>
-    </span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=Driver%20and%20Service&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f001-driver-and-service%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
+    </div><div class="post_comments">
+  
+  
+  
+</div>
 
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f001-driver-and-service%2f&t=Driver%20and%20Service" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
 
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
 
-    </a>
-    <a href="http://localhost:1313/post/001-driver-and-service/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
 
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p>Code has one of two roles:
-Add value to your business Drive the prior bullet point The first bullet point is usually called service code. It’s the service your company is being paid to do. The second bullet point can be one of many things, it could be controllers/webapps/etc. It can be cron jobs that perform …</p>
-          
-          <br>
-          <a href="http://localhost:1313/post/001-driver-and-service/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-        <li class="post_item">
-  <div class="excerpt">
-    <div class="excerpt_header">
-      <h3 class="post_link">
-        <a href="http://localhost:1313/post/000-mighty-space/" title="The Mighty Whitespace">The Mighty Whitespace</a>
-      </h3>
-      
-  <div class="post_meta">
-    <span><svg class="icon">
-  <title>calendar</title>
-  <use xlink:href="#calendar"></use>
-</svg>
-</span>
-    <span class="post_date">
-      Apr 24, 2024</span>
-    <span class="post_time"> · 7 min read</span><span>&nbsp;· <a href='http://localhost:1313/tags/uncle-bob/' title="Uncle Bob" class="post_tag button button_translucent">Uncle Bob
-        </a><a href='http://localhost:1313/tags/thoughts/' title="Thoughts" class="post_tag button button_translucent">Thoughts
-        </a><a href='http://localhost:1313/tags/whitespace/' title="Whitespace" class="post_tag button button_translucent">Whitespace
-        </a>
-    </span>
-    <span class="page_only">&nbsp;·
-  <div class="post_share">
-    Share on:
-    <a href="https://twitter.com/intent/tweet?text=The%20Mighty%20Whitespace&url=http%3a%2f%2flocalhost%3a1313%2fpost%2f000-mighty-space%2f&tw_p=tweetbutton" class="twitter" title="Share on Twitter" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>twitter</title>
-  <use xlink:href="#twitter"></use>
-</svg>
-
-    </a>
-    <a href="https://www.facebook.com/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2f000-mighty-space%2f&t=The%20Mighty%20Whitespace" class="facebook" title="Share on Facebook" target="_blank" rel="nofollow">
-      <svg class="icon">
-  <title>facebook</title>
-  <use xlink:href="#facebook"></use>
-</svg>
-
-    </a>
-    <a href="#linkedinshare" id = "linkedinshare" class="linkedin" title="Share on LinkedIn" rel="nofollow">
-      <svg class="icon">
-  <title>linkedin</title>
-  <use xlink:href="#linkedin"></use>
-</svg>
-
-    </a>
-    <a href="http://localhost:1313/post/000-mighty-space/" title="Copy Link" class="link link_yank">
-      <svg class="icon">
-  <title>copy</title>
-  <use xlink:href="#copy"></use>
-</svg>
-
-    </a>
-  </div>
-  </span>
-  </div>
-
-    </div>
-      <div class="excerpt_footer">
-        <div class="pale">
-          
-            <p>I’ve seen multiple criticisms of Uncle Bob’s Clean Code involving the (short) length of functions. I’ve also seen multiple great responses to those rules of thumb. I want to derive another way to reason about the length of a function. Let’s begin.
-Thoughts I want the number and …</p>
-          
-          <br>
-          <a href="http://localhost:1313/post/000-mighty-space/" title="Read More" class="excerpt_more button">Read More</a>
-        </div>
-      </div>
-    </div>
-  </li>
-
-      <li>
-      </li>
-    </ul>
-  </div>
+  </article>
 <aside class="sidebar">
   <section class="sidebar_inner">
     <br>
@@ -366,6 +337,11 @@ Thoughts I want the number and …</p>
           <span class="button_tally">2</span>
         </a>
         
+        <a href='http://localhost:1313/tags/naming/' class="post_tag button button_translucent" title="naming">
+          NAMING
+          <span class="button_tally">2</span>
+        </a>
+        
         <a href='http://localhost:1313/tags/bets/' class="post_tag button button_translucent" title="bets">
           BETS
           <span class="button_tally">1</span>
@@ -388,11 +364,6 @@ Thoughts I want the number and …</p>
         
         <a href='http://localhost:1313/tags/intent/' class="post_tag button button_translucent" title="intent">
           INTENT
-          <span class="button_tally">1</span>
-        </a>
-        
-        <a href='http://localhost:1313/tags/naming/' class="post_tag button button_translucent" title="naming">
-          NAMING
           <span class="button_tally">1</span>
         </a>
         
@@ -422,9 +393,8 @@ Thoughts I want the number and …</p>
   </section>
 </aside>
 
+  
 </div>
-
-
     </main><svg width="0" height="0" class="hidden">
   <symbol viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" id="facebook">
     <path d="M437 0H75C33.648 0 0 33.648 0 75v362c0 41.352 33.648 75 75 75h151V331h-60v-90h60v-61c0-49.629 40.371-90 90-90h91v90h-91v61h91l-15 90h-76v181h121c41.352 0 75-33.648 75-75V75c0-41.352-33.648-75-75-75zm0 0"></path>

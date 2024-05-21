@@ -55,3 +55,66 @@ Even if you are certain of the design, starting with an [MVP](https://en.wikiped
 ## Conclusions
 
 Just make sure you aren't blindly moving all the pieces on the board.
+
+
+
+
+
+
+
+
+
+
+# 004-express-intent
+
+## Totality
+
+Totality is the concept that all possible expected outcomes are covered by the return type.  To restate in a slightly overcomplicated way: all elements in the domain of the function yield a result.  Take the linear function `f(x) = x * 2`.  Te domain for this function are all numbers.  Take the java function:
+
+``` java
+  static int double(int x) {
+    return x * 2;
+  }
+```
+
+The domain of the function is all integers.
+
+Let's take a less mathematical example:
+
+``` java
+  Session startSession(String userName, String password) {
+    ...
+  }
+```
+
+The domain for function is the domain of all strings for `userName` and the domain of all strings for `password`.  That includes `""` (the empty string), `"   "` (whitespace), along with all ASCII and non-ASCII characters.  What do you think the output of this function is if `password` is empty?  Can you guess it?  I as the author cannot.  I might assume that I need to look for some exception, though which one (or two or three) I am entirely unsure.  
+If you say you take a `String` or `int` in your public signature, you should expect empty strings, non-zero numbers and any value within the conceivable range of those datatypes.
+
+## Complex Return Types
+
+What about the range of a function? Let's refactor the prior example:
+
+``` java
+  public sealed class LoginResult permits SuccessfulLogin, AuthenticationFailure, LockedUserFailure {}
+  final class SuccessfulLogin extends LoginResult { 
+    private Session session;
+    ...
+  }
+  final class AuthenticationFailure extends LoginResult { ... }
+  final class LockedUserFailure extends LoginResult { ... }
+
+  Session startSession(String userName, String password) {
+    ...
+  }
+```
+
+What do we think the outcomes of this function are?  Can the IDE help use with that?  Can we `switch`/pattern match on them.  Do we know how to extend the possible outcomes if more business cases come up?
+
+Complex return types can be difficult to produce in some languages, but IDEs are fairly well optimized to help you with the process.  Many have the most basic of complex return types: `Optional`.  Other's exist in a much more sneaky form: [`org.springframework.http.ResponseEntity`](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html).  Get in the habit of thinking about how you can express totality in your return type.
+
+
+# Command/Query
+
+I will take a brief moment to mention [Command Query Separation](https://martinfowler.com/bliki/CommandQuerySeparation.html).  One way to conceptualize it is that an HTTP `POST`/`PUT` can be expected to change the state of a system, while an HTTP `GET` is not.  Separating commends that modify your system from the commands that inspect the system.  While this is generally an architectural concern (think read/write replication), it bears some consideration that we should limit the amount of service code that we produce that does both querying and modification of state in the same function.
+
+As such, it is heavily recommended that if you have a method that has side effect that you consider returning `void`.  There are obviously cases where this will not be reasonable (`createWidget` returning you the created `Widget` seems reasonable).

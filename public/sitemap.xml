@@ -3,42 +3,67 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/categories/architecture/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/post/003-architecture-as-bets/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
+    <lastmod>2024-05-11T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
+    <lastmod>2024-05-11T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/chess/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
+    <loc>http://localhost:1313/categories/coding/</loc>
+    <lastmod>2024-05-11T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>http://localhost:1313/tags/design/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
+    <loc>http://localhost:1313/post/004-express-intent/</loc>
+    <lastmod>2024-05-11T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/intent/</loc>
+    <lastmod>2024-05-11T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/post/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
+    <lastmod>2024-05-11T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-05-08T12:00:00-04:00</lastmod>
+    <lastmod>2024-05-11T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/categories/architecture/</loc>
+    <lastmod>2024-05-09T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/bets/</loc>
+    <lastmod>2024-05-09T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/chess/</loc>
+    <lastmod>2024-05-09T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/design/</loc>
+    <lastmod>2024-05-09T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/post/003-software-engineering-as-bets/</loc>
+    <lastmod>2024-05-09T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/tags/yagni/</loc>
+    <lastmod>2024-05-09T12:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -54,11 +79,6 @@
   </url><url>
     <loc>http://localhost:1313/post/002-what-from-how/</loc>
     <lastmod>2024-05-06T12:00:00-04:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>http://localhost:1313/categories/coding/</loc>
-    <lastmod>2024-04-30T00:00:00-04:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -99,6 +119,10 @@
   </url><url>
     <loc>http://localhost:1313/tags/whitespace/</loc>
     <lastmod>2024-04-24T12:00:00-04:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>http://localhost:1313/cutting-room-floor/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>

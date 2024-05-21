@@ -49,10 +49,5 @@
   "frontMatter.framework.id": "hugo",
   "frontMatter.content.publicFolder": "static",
   "frontMatter.preview.host": "http://localhost:1313",
-  "frontMatter.content.pageFolders": [
-    {
-      "title": "Posts",
-      "path": "[[workspace]]/f:/workspace/hugo/quickstart/content/posts"
-    }
-  ]
+  "frontMatter.content.pageFolders": []
 }

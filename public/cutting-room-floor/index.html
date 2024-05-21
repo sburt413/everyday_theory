@@ -106,7 +106,7 @@
 </span>
     <span class="post_date">
       Jan 1, 0001</span>
-    <span class="post_time"> · 5 min read</span>
+    <span class="post_time"> · 8 min read</span>
     <span class="page_only">&nbsp;·
   <div class="post_share">
     Share on:
@@ -170,6 +170,37 @@
 <p>Even if you are certain of the design, starting with an <a href="https://en.wikipedia.org/wiki/Minimum_viable_product">MVP</a> and iteratively building it up offers you flexibility in your plan.  If you start running out of runway before a release, it&rsquo;s better to have a working product.  It&rsquo;s easier to determine what you need to cut from the plan, rather than wonder what you can cram in.  Having an MVP and iterating usually builds more good will with stakeholders.  Good will is like playing with house money when you place your future engineering bets.</p>
 <h2 id="conclusions">Conclusions</h2>
 <p>Just make sure you aren&rsquo;t blindly moving all the pieces on the board.</p>
+<h1 id="004-express-intent">004-express-intent</h1>
+<h2 id="totality">Totality</h2>
+<p>Totality is the concept that all possible expected outcomes are covered by the return type.  To restate in a slightly overcomplicated way: all elements in the domain of the function yield a result.  Take the linear function <code>f(x) = x * 2</code>.  Te domain for this function are all numbers.  Take the java function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">double</span>(<span style="color:#66d9ef">int</span> x) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> x <span style="color:#f92672">*</span> 2;
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>The domain of the function is all integers.</p>
+<p>Let&rsquo;s take a less mathematical example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  Session <span style="color:#a6e22e">startSession</span>(String userName, String password) {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>The domain for function is the domain of all strings for <code>userName</code> and the domain of all strings for <code>password</code>.  That includes <code>&quot;&quot;</code> (the empty string), <code>&quot;   &quot;</code> (whitespace), along with all ASCII and non-ASCII characters.  What do you think the output of this function is if <code>password</code> is empty?  Can you guess it?  I as the author cannot.  I might assume that I need to look for some exception, though which one (or two or three) I am entirely unsure.<br>
+If you say you take a <code>String</code> or <code>int</code> in your public signature, you should expect empty strings, non-zero numbers and any value within the conceivable range of those datatypes.</p>
+<h2 id="complex-return-types">Complex Return Types</h2>
+<p>What about the range of a function? Let&rsquo;s refactor the prior example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LoginResult</span> permits SuccessfulLogin, AuthenticationFailure, LockedUserFailure {}
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SuccessfulLogin</span> <span style="color:#66d9ef">extends</span> LoginResult { 
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> Session session;
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthenticationFailure</span> <span style="color:#66d9ef">extends</span> LoginResult { ... }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LockedUserFailure</span> <span style="color:#66d9ef">extends</span> LoginResult { ... }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  Session <span style="color:#a6e22e">startSession</span>(String userName, String password) {
+</span></span><span style="display:flex;"><span>    ...
+</span></span><span style="display:flex;"><span>  }
+</span></span></code></pre></div><p>What do we think the outcomes of this function are?  Can the IDE help use with that?  Can we <code>switch</code>/pattern match on them.  Do we know how to extend the possible outcomes if more business cases come up?</p>
+<p>Complex return types can be difficult to produce in some languages, but IDEs are fairly well optimized to help you with the process.  Many have the most basic of complex return types: <code>Optional</code>.  Other&rsquo;s exist in a much more sneaky form: <a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html"><code>org.springframework.http.ResponseEntity</code></a>.  Get in the habit of thinking about how you can express totality in your return type.</p>
+<h1 id="commandquery">Command/Query</h1>
+<p>I will take a brief moment to mention <a href="https://martinfowler.com/bliki/CommandQuerySeparation.html">Command Query Separation</a>.  One way to conceptualize it is that an HTTP <code>POST</code>/<code>PUT</code> can be expected to change the state of a system, while an HTTP <code>GET</code> is not.  Separating commends that modify your system from the commands that inspect the system.  While this is generally an architectural concern (think read/write replication), it bears some consideration that we should limit the amount of service code that we produce that does both querying and modification of state in the same function.</p>
+<p>As such, it is heavily recommended that if you have a method that has side effect that you consider returning <code>void</code>.  There are obviously cases where this will not be reasonable (<code>createWidget</code> returning you the created <code>Widget</code> seems reasonable).</p>
 
     </div>
 <div class="post_comments">
@@ -205,19 +236,22 @@
     <h2 class="mt-4">Recent Posts</h2>
     <ul class="flex-column">
       <li>
+        <a href="http://localhost:1313/post/004-express-intent/" class="nav-link" title="Express Intent">Express Intent</a>
+      </li>
+      <li>
         <a href="http://localhost:1313/post/003-software-engineering-as-bets/" class="nav-link" title="Software Engineering as Bets">Software Engineering as Bets</a>
       </li>
     </ul>
     <div>
       <h2 class="mt-4 taxonomy" id="categories-section">Categories</h2>
       <nav class="tags_nav">
-        <a href='http://localhost:1313/categories/architecture/' class="post_tag button button_translucent" title="architecture">
-          ARCHITECTURE
-          <span class="button_tally">2</span>
-        </a>
-        
         <a href='http://localhost:1313/categories/coding/' class="post_tag button button_translucent" title="coding">
           CODING
+          <span class="button_tally">3</span>
+        </a>
+        
+        <a href='http://localhost:1313/categories/architecture/' class="post_tag button button_translucent" title="architecture">
+          ARCHITECTURE
           <span class="button_tally">2</span>
         </a>
         
@@ -234,6 +268,11 @@
         
         <a href='http://localhost:1313/tags/design/' class="post_tag button button_translucent" title="design">
           DESIGN
+          <span class="button_tally">2</span>
+        </a>
+        
+        <a href='http://localhost:1313/tags/naming/' class="post_tag button button_translucent" title="naming">
+          NAMING
           <span class="button_tally">2</span>
         </a>
         
@@ -257,8 +296,8 @@
           <span class="button_tally">1</span>
         </a>
         
-        <a href='http://localhost:1313/tags/naming/' class="post_tag button button_translucent" title="naming">
-          NAMING
+        <a href='http://localhost:1313/tags/intent/' class="post_tag button button_translucent" title="intent">
+          INTENT
           <span class="button_tally">1</span>
         </a>
         
