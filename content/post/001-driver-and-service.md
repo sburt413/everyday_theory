@@ -21,6 +21,7 @@ tags:
   - Driver/Service Code
   - Antipatterns
   - Garbage In; Garbage Out
+  - Multiple Hats
 ---
 
 Code has one of two roles: 

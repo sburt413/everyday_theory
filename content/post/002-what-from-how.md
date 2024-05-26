@@ -21,6 +21,7 @@ tags:
   - Antipatterns
   - Design
   - Naming
+  - Multiple Hats
 ---
 
 The primary point of good Software Design is to separate out _what_ your code does from _how_ your code does it.  Being able to make this distinction in real time when coding is critical.  Let’s explore.

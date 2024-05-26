@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ownership on Everyday Theory</title>
+    <link>http://localhost:1313/tags/ownership/</link>
+    <description>Recent content in Ownership on Everyday Theory</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 25 May 2024 12:00:00 -0400</lastBuildDate><atom:link href="http://localhost:1313/tags/ownership/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Propriety</title>
+      <link>http://localhost:1313/post/006-propriety/</link>
+      <pubDate>Sat, 25 May 2024 12:00:00 -0400</pubDate>
+      
+      <guid>http://localhost:1313/post/006-propriety/</guid>
+      <description>
+        
+          
+            To save me some work, dear reader, imagine the 3 Spiderman meme. Then fill in &amp;ldquo;Who owns client data validation?&amp;rdquo; validation and label the Spidermans (Spidermen?) Controller/Service/Persistence. One place has to own that responsibility. Let&amp;rsquo;s say we had a bug where we allowed Widgets with an empty price field. How do you fix that? Where do you fix that?
+Knowing who owns a responsibility in your application is essential.
+Proprietary Information Let&amp;rsquo;s take a different example.
+          
+          
+        
+      </description>
+    </item>
+    
+  </channel>
+</rss>

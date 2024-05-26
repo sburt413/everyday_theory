@@ -17,7 +17,7 @@
         
           
             Sometimes, it&amp;rsquo;s what you don&amp;rsquo;t say that hurts you the most. Let&amp;rsquo;s go.
-Side Effects A warning before we begin, I will use the words &amp;ldquo;side effects&amp;rdquo; heavily in this post. I come at this from the functional school of thought. Quite honestly, in said school of thought, &amp;ldquo;side&amp;rdquo; effects can be the very necessary things your system does. Writing to a database is technically a side effect. If something happens in the system outside the expected return value.
+Side Effects A warning before we begin, I will use the words &amp;ldquo;side effects&amp;rdquo; heavily in this post. I come at this from the functional school of thought. Quite honestly, in said school of thought, &amp;ldquo;side&amp;rdquo; effects can be the very necessary things your system does. Writing to a database is technically a side effect. If something happens in the system outside the expected return value, then I will refer to it as a &amp;ldquo;side effect&amp;rdquo;.
           
           
         
